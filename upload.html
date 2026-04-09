@@ -49,18 +49,18 @@
   <div class="card">
     <header class="card-head">
       <h1>Đăng / Thêm chapter — Coconut Manga</h1>
-      <div class="small">Ghép ảnh lên GitHub (images/*) + cập nhật stories.json</div>
+      <div class="small">🥥🥥🥥</div>
     </header>
 
     <div class="card-body">
       <div class="left">
         <label>Tên truyện (chỉ bắt buộc nếu là truyện mới)</label>
-        <input id="title" type="text" placeholder="Tên truyện (ví dụ: Ta vô địch lúc nào)">
+        <input id="title" type="text" placeholder="nhập Tên truyện">
         <div class="row" style="margin-top:8px">
           <div style="flex:1">
             <label>ID truyện (bắt buộc)</label>
-            <input id="id" type="text" placeholder="id không dấu, lowercase (vd: tavodichlucnao)">
-            <div class="hint">Ví dụ: <code>tavodichlucnao</code></div>
+            <input id="id" type="text" placeholder="id không dấu, viết thường,">
+            <div class="hint">id truyện:<code>dùng để cập nhật truyện</code></div>
           </div>
           <div style="width:120px">
             <label>Số chapter</label>
@@ -96,7 +96,7 @@
         </div>
 
         <div style="margin-top:12px">
-          <button class="primary" id="btn-upload">Đăng / Cập nhật (sẽ hỏi token)</button>
+          <button class="primary" id="btn-upload">Đăng / Cập nhật (cần mã upload)</button>
           <button class="secondary" id="btn-clear" style="margin-left:10px">Xóa lựa chọn</button>
           <div class="progress"><div id="bar" class="bar"></div></div>
         </div>
@@ -132,8 +132,8 @@
   - Log chi tiết vào #log
 */
 
-const API_BASE = "https://api.github.com/repos/pro-coconut/pro-coconut.github.io/contents";
-const RAW_BASE = "https://raw.githubusercontent.com/pro-coconut/pro-coconut.github.io/main";
+const API_BASE = "https://api.github.com/repos/gocnhotruyentinh/gocnhotruyentinh.github.io/contents";
+const RAW_BASE = "https://raw.githubusercontent.com/gocnhotruyentinh/gocnhotruyentinh.github.io/main";
 
 const fileInput = document.getElementById('file-input');
 const dropZone = document.getElementById('dropZone');
