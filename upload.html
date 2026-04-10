@@ -22,7 +22,6 @@
   --danger: #ff5252;
   --warning: #ffab40;
 }
-
 /* ===== BASE ===== */
 body {
   font-family: 'Segoe UI', Inter, Arial, sans-serif;
@@ -32,13 +31,10 @@ body {
   min-height: 100vh;
   transition: background 0.3s ease;
 }
-
-/* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
 ::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #ff7ad9; }
-
 /* ===== LAYOUT ===== */
 .wrap { max-width: 950px; margin: 28px auto; padding: 20px; }
 .card {
@@ -51,8 +47,7 @@ body {
 /* ===== HEADER & TABS ===== */
 header.card-head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 22px;
-  border-bottom: 1px solid var(--border-color);
+  padding: 18px 22px;  border-bottom: 1px solid var(--border-color);
   background: rgba(20, 0, 34, 0.8);
 }
 header.card-head h1 {
@@ -60,7 +55,6 @@ header.card-head h1 {
   text-shadow: 0 0 10px var(--main-glow);
 }
 header.card-head .small { color: var(--text-muted); }
-
 .tabs {
   display: flex;
   border-bottom: 1px solid var(--border-color);
@@ -79,7 +73,6 @@ header.card-head .small { color: var(--text-muted); }
   background: var(--card-bg);
   box-shadow: inset 0 -2px 0 var(--main-color);
 }
-
 /* ===== CARD BODY ===== */
 .card-body {
   padding: 20px 22px;
@@ -88,7 +81,6 @@ header.card-head .small { color: var(--text-muted); }
   gap: 20px;
 }
 .full-width { grid-column: 1 / -1; }
-
 /* ===== FORMS ===== */
 label {
   display: block; font-weight: 600; margin: 12px 0 6px;
@@ -96,15 +88,15 @@ label {
 }
 input[type="text"], input[type="number"], textarea, .urls, select {
   width: 100%; box-sizing: border-box;
-  padding: 12px 14px;  border: 2px solid var(--border-color);
+  padding: 12px 14px;
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   font-size: 14px;
   background: rgba(10, 0, 20, 0.6);
   color: var(--text-primary);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-input::placeholder, textarea::placeholder, select::placeholder { color: var(--text-muted); }
-input:focus, textarea:focus, .urls:focus, select:focus {
+input::placeholder, textarea::placeholder, select::placeholder { color: var(--text-muted); }input:focus, textarea:focus, .urls:focus, select:focus {
   outline: none;
   border-color: var(--main-color);
   box-shadow: 0 0 0 3px rgba(255, 78, 205, 0.3);
@@ -118,7 +110,6 @@ code {
   padding: 2px 6px; border-radius: 4px;
   color: var(--main-color); font-size: 12px;
 }
-
 /* ===== STORY SELECTOR ===== */
 .story-selector {
   background: rgba(20, 0, 34, 0.7);
@@ -129,14 +120,12 @@ code {
 }
 .story-selector-header {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
 }
 .story-selector-search {
-  display: flex; gap: 8px; margin-bottom: 12px;
+  display: flex; gap: 8px; margin-bottom: 12px; width: 100%;
 }
-.story-selector-search input {
-  flex: 1;
-}
+.story-selector-search input { flex: 1; }
 .story-list {
   max-height: 200px;
   overflow-y: auto;
@@ -145,8 +134,8 @@ code {
 }
 .story-option {
   display: flex; gap: 10px; padding: 10px;
-  cursor: pointer; border-bottom: 1px solid rgba(255,204,255,0.08);  transition: background 0.2s;
-  align-items: center;
+  cursor: pointer; border-bottom: 1px solid rgba(255,204,255,0.08);
+  transition: background 0.2s; align-items: center;
 }
 .story-option:hover, .story-option.selected {
   background: var(--card-hover);
@@ -156,15 +145,12 @@ code {
   width: 40px; height: 56px; object-fit: cover;
   border-radius: 6px; border: 1px solid var(--border-color);
   background: rgba(10, 0, 20, 0.8);
-}
-.story-option-info { flex: 1; min-width: 0; }
+}.story-option-info { flex: 1; min-width: 0; }
 .story-option-title {
   font-weight: 600; font-size: 14px; color: var(--text-primary);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.story-option-meta {
-  font-size: 12px; color: var(--text-muted);
-}
+.story-option-meta { font-size: 12px; color: var(--text-muted); }
 .story-option-new {
   display: flex; align-items: center; gap: 8px;
   padding: 12px; background: rgba(0, 230, 118, 0.1);
@@ -176,7 +162,6 @@ code {
   background: rgba(0, 230, 118, 0.2);
   transform: translateX(4px);
 }
-
 /* ===== DRAG & DROP ===== */
 .drop {
   border: 2px dashed var(--border-color);
@@ -191,10 +176,10 @@ code {
   color: var(--text-primary);
   box-shadow: 0 0 20px rgba(255, 78, 205, 0.2);
 }
-
 /* ===== PREVIEW & RIGHT SIDE ===== */
 .thumb {
-  display: block; width: 100%; height: 240px;  object-fit: cover; border-radius: 12px;
+  display: block; width: 100%; height: 240px;
+  object-fit: cover; border-radius: 12px;
   border: 2px solid var(--border-color);
   background: rgba(10, 0, 20, 0.8);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -209,9 +194,7 @@ code {
   border-left: 1px solid var(--border-color);
   padding-left: 20px;
 }
-
-/* ===== BUTTONS ===== */
-button.primary {
+/* ===== BUTTONS ===== */button.primary {
   background: linear-gradient(45deg, var(--main-color), #7a00ff);
   color: #fff; padding: 12px 20px; border-radius: 12px;
   border: 0; font-weight: 700; cursor: pointer;
@@ -223,7 +206,6 @@ button.primary:hover {
   box-shadow: 0 10px 30px rgba(255, 78, 205, 0.6);
 }
 button.primary:active { transform: translateY(0); }
-
 button.secondary {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-color);
@@ -235,7 +217,6 @@ button.secondary:hover {
   background: var(--card-hover);
   border-color: var(--main-color);
 }
-
 button.danger {
   background: var(--danger); color: #fff;
   padding: 8px 16px; border-radius: 10px; border: 0;
@@ -255,20 +236,18 @@ button.ghost:hover {
   background: rgba(255, 82, 82, 0.15);
   color: #fff;
 }
-
-button.toggle-btn {
+button.toggle-btn, button.refresh-btn {
   background: rgba(255, 78, 205, 0.15);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   padding: 6px 12px; border-radius: 8px;
   cursor: pointer; font-size: 13px;
   transition: all 0.25s ease;
-}
-button.toggle-btn:hover, button.toggle-btn.active {
+}button.toggle-btn:hover, button.toggle-btn.active,
+button.refresh-btn:hover {
   background: var(--main-color);
   color: #fff; border-color: transparent;
 }
-
 /* ===== PROGRESS & LOG ===== */
 .progress {
   height: 10px; background: rgba(255, 255, 255, 0.1);
@@ -288,11 +267,11 @@ button.toggle-btn:hover, button.toggle-btn.active {
   font-family: 'Consolas', monospace; font-size: 13px;
   border: 1px solid var(--border-color);
 }
-
 /* ===== MANAGE TAB ===== */
 .story-card {
   display: flex; gap: 14px; padding: 14px;
-  border: 1px solid var(--border-color);  border-radius: 12px; margin-bottom: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px; margin-bottom: 12px;
   background: rgba(20, 0, 34, 0.6);
   align-items: flex-start;
   transition: all 0.25s ease;
@@ -313,8 +292,7 @@ button.toggle-btn:hover, button.toggle-btn.active {
   background: rgba(255, 78, 205, 0.15);
   padding: 5px 12px; border-radius: 20px;
   font-size: 12px; display: flex; align-items: center; gap: 6px;
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  color: var(--text-secondary);  border: 1px solid var(--border-color);
 }
 .chap-tag button {
   background: none; border: 0; color: var(--danger);
@@ -323,10 +301,8 @@ button.toggle-btn:hover, button.toggle-btn.active {
 }
 .chap-tag button:hover { transform: scale(1.3); }
 .story-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
-
 .loading { opacity: 0.7; pointer-events: none; }
 .hidden { display: none !important; }
-
 /* ===== PETAL ANIMATION ===== */
 #petal-container {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -348,7 +324,6 @@ button.toggle-btn:hover, button.toggle-btn.active {
   .story-card { flex-direction: column; }
   .story-actions { flex-direction: row; justify-content: flex-end; width: 100%; }
 }
-
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
   #petal-container { display: none; }
@@ -366,7 +341,6 @@ button.toggle-btn:hover, button.toggle-btn.active {
       <h1>📚 Quản lý Truyện — góc nhỏ truyện tình</h1>
       <div class="small">🌸</div>
     </header>
-
     <!-- Tabs -->
     <div class="tabs">
       <div class="tab-btn active" data-tab="upload">➕ Upload Chapter</div>
@@ -380,17 +354,21 @@ button.toggle-btn:hover, button.toggle-btn.active {
         <div class="story-selector">
           <div class="story-selector-header">
             <label style="margin:0">📖 Chọn truyện để cập nhật</label>
-            <button class="toggle-btn" id="btn-new-story" title="Thêm truyện mới">✨ Truyện mới</button>
+            <div style="display:flex;gap:8px">
+              <button class="refresh-btn" id="btn-refresh-selector" title="Làm mới danh sách">🔄</button>
+              <button class="toggle-btn" id="btn-new-story" title="Thêm truyện mới">✨ Truyện mới</button>
+            </div>
           </div>
           <div class="story-selector-search">
             <input type="text" id="story-search" placeholder="🔍 Tìm tên truyện...">
           </div>
           <div id="story-list" class="story-list">
-            <div class="small" style="text-align:center;padding:15px;color:var(--text-muted)">Đang tải danh sách...</div>
+            <div class="small" style="text-align:center;padding:15px;color:var(--text-muted)">Nhấn 🔄 để tải danh sách...</div>
           </div>
           <div class="hint" style="margin-top:8px">Chọn truyện có sẵn để cập nhật chapter, hoặc nhấn "✨ Truyện mới" để thêm truyện mới.</div>
         </div>
-        <!-- FORM FIELDS (auto-filled when story selected) -->
+
+        <!-- FORM FIELDS -->
         <label>Tên truyện <span class="small">(tự động khi chọn truyện)</span></label>
         <input id="title" type="text" placeholder="nhập Tên truyện" disabled>
         
@@ -413,7 +391,6 @@ button.toggle-btn:hover, button.toggle-btn.active {
         <textarea id="description" placeholder="Mô tả / tóm tắt ngắn"></textarea>
 
         <hr style="margin:16px 0;border:none;border-top:1px solid var(--border-color)">
-
         <label>Ảnh bìa <span class="small">(chỉ cần khi thêm truyện mới)</span></label>
         <input id="cover" type="file" accept="image/*">
         <div class="hint">Nếu truyện đã tồn tại bạn có thể bỏ trống.</div>
@@ -439,7 +416,8 @@ button.toggle-btn:hover, button.toggle-btn.active {
           <div class="progress" style="flex:1;min-width:200px"><div id="bar" class="bar"></div></div>
         </div>
 
-        <div style="margin-top:14px">          <label>📋 Log (chi tiết)</label>
+        <div style="margin-top:14px">
+          <label>📋 Log (chi tiết)</label>
           <div id="log" class="log">✨ Sẵn sàng. Chọn truyện và bắt đầu upload!</div>
         </div>
       </div>
@@ -461,8 +439,7 @@ button.toggle-btn:hover, button.toggle-btn.active {
           <div id="selected-story-name" style="font-size:14px;color:var(--text-primary)"></div>
           <div id="selected-story-chaps" style="font-size:12px;color:var(--text-muted);margin-top:4px"></div>
         </div>
-      </div>
-    </div>
+      </div>    </div>
 
     <!-- Manage Tab -->
     <div id="tab-manage" class="card-body hidden full-width">
@@ -488,7 +465,8 @@ function createPetal() {
   const box = document.getElementById('petal-container');
   if (!box) return;
   const petal = document.createElement("div");
-  petal.className = "petal";  petal.textContent = "🌸";
+  petal.className = "petal";
+  petal.textContent = "🌸";
   const startX = Math.random() * window.innerWidth;
   const duration = Math.random() * 3 + 4;
   const size = Math.random() * 12 + 12;
@@ -509,10 +487,8 @@ const RAW_BASE = "https://raw.githubusercontent.com/gocnhotruyentinh/gocnhotruye
 const API_BASE = "https://api.github.com/repos/gocnhotruyentinh/gocnhotruyentinh.github.io/contents";
 
 /* ===== ELEMENTS ===== */
-// Upload tab
 const fileInput = document.getElementById('file-input');
-const dropZone = document.getElementById('dropZone');
-const urlListEl = document.getElementById('url-list');
+const dropZone = document.getElementById('dropZone');const urlListEl = document.getElementById('url-list');
 const coverInput = document.getElementById('cover');
 const coverPreview = document.getElementById('cover-preview');
 const filesPreview = document.getElementById('files-preview');
@@ -521,11 +497,10 @@ const barEl = document.getElementById('bar');
 const storyListEl = document.getElementById('story-list');
 const storySearchEl = document.getElementById('story-search');
 const btnNewStory = document.getElementById('btn-new-story');
+const btnRefreshSelector = document.getElementById('btn-refresh-selector');
 const selectedStoryInfo = document.getElementById('selected-story-info');
 const selectedStoryName = document.getElementById('selected-story-name');
 const selectedStoryChaps = document.getElementById('selected-story-chaps');
-
-// Manage tab
 const manageList = document.getElementById('manage-list');
 const logManage = document.getElementById('log-manage');
 const barManage = document.getElementById('bar-manage');
@@ -537,7 +512,8 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
-    document.getElementById('tab-upload').classList.toggle('hidden', tab!=='upload');    document.getElementById('tab-manage').classList.toggle('hidden', tab!=='manage');
+    document.getElementById('tab-upload').classList.toggle('hidden', tab!=='upload');
+    document.getElementById('tab-manage').classList.toggle('hidden', tab!=='manage');
     if(tab==='manage') loadManageList();
     if(tab==='upload') loadStorySelector();
   });
@@ -556,15 +532,53 @@ function logManageMsg(...args){
   logManage.innerText = line + '\n' + logManage.innerText;
 }
 
-// Thay thế phần loadStorySelector bằng code này:
+/* ===== RENDER STORY SELECTOR ===== */
+function renderStorySelector(stories, filter = '') {
+  const filtered = stories.filter(s => 
+    s.title?.toLowerCase().includes(filter.toLowerCase()) || 
+    s.id?.toLowerCase().includes(filter.toLowerCase())
+  );  
+  if (filtered.length === 0) {
+    storyListEl.innerHTML = '<div class="small" style="text-align:center;padding:15px;color:var(--text-muted)">📭 Không tìm thấy truyện</div>';
+    return;
+  }
+  
+  storyListEl.innerHTML = '';
+  
+  // Option: New story
+  const newOption = document.createElement('div');
+  newOption.className = 'story-option-new';
+  newOption.innerHTML = '✨ <span>Thêm truyện mới</span>';
+  newOption.onclick = () => selectNewStory();
+  storyListEl.appendChild(newOption);
+  
+  // Existing stories
+  filtered.forEach(story => {
+    const option = document.createElement('div');
+    option.className = 'story-option' + (selectedStory?.id === story.id ? ' selected' : '');
+    
+    const thumb = story.thumbnail || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="56" viewBox="0 0 40 56"%3E%3Crect fill="%23140022" width="40" height="56"/%3E%3Ctext x="50%25" y="50%25" font-size="8" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%3C/text%3E%3C/svg%3E';
+    
+    option.innerHTML = `
+      <img src="${thumb}" alt="${story.title}">
+      <div class="story-option-info">
+        <div class="story-option-title">${story.title || story.id}</div>
+        <div class="story-option-meta">ID: ${story.id} • ${story.chapters?.length || 0} chapter</div>
+      </div>
+    `;
+    
+    option.onclick = () => selectExistingStory(story);
+    storyListEl.appendChild(option);
+  });
+}
 
+/* ===== LOAD STORY SELECTOR ===== */
 async function loadStorySelector(retryCount = 0) {
   try {
     storyListEl.innerHTML = '<div class="small" style="text-align:center;padding:15px;color:var(--text-muted)">⏳ Đang tải danh sách...</div>';
     
     const res = await fetch(RAW_BASE + '/stories.json?t=' + Date.now());
     
-    // Handle 404 - file chưa tồn tại
     if (res.status === 404) {
       storiesData = [];
       renderStorySelector(storiesData);
@@ -572,26 +586,20 @@ async function loadStorySelector(retryCount = 0) {
       return;
     }
     
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);    
     storiesData = await res.json();
     renderStorySelector(storiesData);
     log('✅ Đã tải ' + storiesData.length + ' truyện vào danh sách.');
     
-    // Ẩn fallback nếu thành công
-    document.getElementById('fallback-manual').classList.remove('show');
-    
   } catch (err) {
     console.error('Load story selector error:', err);
     
-    // Retry logic - thử lại 2 lần
     if (retryCount < 2) {
       log(`⚠️ Lỗi tải (lần ${retryCount + 1}), đang thử lại...`);
       setTimeout(() => loadStorySelector(retryCount + 1), 1000);
       return;
     }
     
-    // Hiển thị lỗi chi tiết
     storyListEl.innerHTML = `
       <div style="text-align:center;padding:20px">
         <div style="color:var(--danger);font-weight:600;margin-bottom:8px">❌ Không tải được danh sách</div>
@@ -603,36 +611,11 @@ async function loadStorySelector(retryCount = 0) {
         </button>
       </div>
     `;
-    
-    // Hiện fallback manual input
-    document.getElementById('fallback-manual').classList.add('show');
     log('❌ Lỗi load story selector:', err);
   }
 }
 
-// Thêm hàm cho manual ID input
-document.getElementById('btn-apply-manual')?.addEventListener('click', () => {
-  const manualId = document.getElementById('manual-id').value.trim().toLowerCase();
-  if (!manualId) {
-    alert('⚠️ Vui lòng nhập ID truyện');
-    return;
-  }
-  
-  document.getElementById('id').value = manualId;
-  document.getElementById('title').disabled = false;
-  document.getElementById('author').disabled = false;
-  document.getElementById('title').focus();
-  
-  log('📝 Chế độ thủ công: ID = ' + manualId);
-  alert('✅ Đã áp dụng ID. Vui lòng nhập tên truyện và các thông tin khác.');
-});
-
-// Refresh button
-document.getElementById('btn-refresh-selector')?.addEventListener('click', () => {
-  loadStorySelector(0);
-});
-}
-
+/* ===== SELECT STORY FUNCTIONS ===== */
 function selectNewStory() {
   selectedStory = null;
   document.getElementById('title').value = '';
@@ -643,50 +626,39 @@ function selectNewStory() {
   document.getElementById('author').disabled = false;
   coverPreview.src = '';
   selectedStoryInfo.classList.add('hidden');
-  
-  // Update UI selection
   document.querySelectorAll('.story-option').forEach(el => el.classList.remove('selected'));
   log('✨ Chế độ: Thêm truyện mới');
 }
 
 function selectExistingStory(story) {
   selectedStory = story;
-  
-  // Auto-fill form
   document.getElementById('title').value = story.title || '';
   document.getElementById('id').value = story.id || '';
   document.getElementById('author').value = story.author || '';
-  document.getElementById('description').value = story.description || '';  
-  // Disable fields for existing story (can still edit description if needed)
-  document.getElementById('title').disabled = true;
+  document.getElementById('description').value = story.description || '';  document.getElementById('title').disabled = true;
   document.getElementById('author').disabled = true;
   
-  // Preview cover
   if (story.thumbnail) {
     coverPreview.src = story.thumbnail;
   } else {
     coverPreview.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="380" height="240" viewBox="0 0 380 240"%3E%3Crect fill="%23140022" width="380" height="240"/%3E%3Ctext x="50%25" y="50%25" font-size="14" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E';
   }
   
-  // Show selected info
   selectedStoryName.textContent = `📖 ${story.title || story.id}`;
   selectedStoryChaps.textContent = `📚 ${story.chapters?.length || 0} chapter hiện có • ID: ${story.id}`;
   selectedStoryInfo.classList.remove('hidden');
   
-  // Update UI selection
   document.querySelectorAll('.story-option').forEach(el => el.classList.remove('selected'));
   event?.currentTarget?.classList?.add('selected');
-  
   log('✅ Đã chọn truyện: ' + story.title + ' (ID: ' + story.id + ')');
 }
 
-// Search filter for story selector
 storySearchEl?.addEventListener('input', (e) => {
   renderStorySelector(storiesData, e.target.value);
 });
 
-// Toggle new story mode
 btnNewStory?.addEventListener('click', selectNewStory);
+btnRefreshSelector?.addEventListener('click', () => loadStorySelector(0));
 
 /* ===== UPLOAD TAB EVENTS ===== */
 dropZone.addEventListener('click', ()=> fileInput.click());
@@ -706,13 +678,13 @@ document.getElementById('btn-clear').addEventListener('click', ()=>{
   coverPreview.src=''; filesPreview.innerHTML='<div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>';
   log('✨ Đã xóa lựa chọn.'); barEl.style.width='0%';
 });
+
 function renderFilesPreview(){
   const files = Array.from(fileInput.files || []);
   if(!files.length){ filesPreview.innerHTML='<div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>'; return; }
   filesPreview.innerHTML='';
   files.slice(0,200).forEach((f,i)=>{
-    const el=document.createElement('div');
-    el.style.padding='8px 6px'; el.style.borderBottom='1px solid rgba(255,204,255,0.08)'; el.style.fontSize='13px';
+    const el=document.createElement('div');    el.style.padding='8px 6px'; el.style.borderBottom='1px solid rgba(255,204,255,0.08)'; el.style.fontSize='13px';
     el.style.color='var(--text-secondary)';
     el.innerText = `${i+1}. ${f.name} — ${Math.round(f.size/1024)} KB`;
     filesPreview.appendChild(el);
@@ -754,14 +726,14 @@ async function deleteFile(path, sha, token, message){
     headers:{ Authorization:`token ${token}`, 'Content-Type':'application/json' },
     body: JSON.stringify({ message: message||("delete "+path), sha: sha, branch: 'main' })
   });
-  const text = await res.text(); let json=null;  try{ json=JSON.parse(text); }catch(e){ json={raw:text} }
+  const text = await res.text(); let json=null;
+  try{ json=JSON.parse(text); }catch(e){ json={raw:text} }
   if(!res.ok) throw { status:res.status, body:json };
   return true;
 }
 async function fetchImageAsBase64(url){
   const res = await fetch(url, { mode:'cors' });
-  if(!res.ok) throw { message:'Fetch image failed', status:res.status, url };
-  const blob = await res.blob();
+  if(!res.ok) throw { message:'Fetch image failed', status:res.status, url };  const blob = await res.blob();
   const b64 = await new Promise((resolve,reject)=>{
     const fr=new FileReader();
     fr.onload=()=>resolve(fr.result.split(',')[1]);
@@ -801,12 +773,6 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
     let story = stories.find(s=>s.id===id);
     const isNew = !story;
     
-    // If updating existing story, use stored data for title/author if not changed
-    if(!isNew && selectedStory) {
-      if(!title && selectedStory.title) {        // Use stored title if input is empty/disabled
-      }
-    }
-    
     if(isNew && !title){ if(!confirm('⚠️ Truyện mới chưa nhập Title. Tiếp tục?')) return; }
 
     let coverUrl='';
@@ -816,8 +782,7 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         log('✨ Upload cover...'); barEl.style.width='18%';
         const coverB64 = await new Promise((resolve,reject)=>{
           const fr=new FileReader();
-          fr.onload=()=>resolve(fr.result.split(',')[1]);
-          fr.onerror=()=>reject('FileReader error');
+          fr.onload=()=>resolve(fr.result.split(',')[1]);          fr.onerror=()=>reject('FileReader error');
           fr.readAsDataURL(coverFile);
         });
         const ext = (coverFile.name.split('.').pop()||'jpg').split('?')[0];
@@ -852,7 +817,8 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         let ext = (f.name.split('.').pop()||'jpg').split('?')[0];
         ext = ext.replace(/[^a-z0-9]/gi,'').toLowerCase()||'jpg';
         const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
-        const path = `${chapterFolder}/${filename}`;        try{
+        const path = `${chapterFolder}/${filename}`;
+        try{
           const downloadUrl = await putFile(path, base64, token, `Upload ${id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
           log('✅ uploaded ->', imageDownloadUrls[i]);
@@ -865,8 +831,7 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         barEl.style.width = `${18+Math.round((i/Math.max(1,urlsFromList.length))*60)}%`;
         log(`→ URL ${i+1}/${urlsFromList.length}: ${url}`);
         try{
-          const {base64,ext} = await fetchImageAsBase64(url);
-          const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
+          const {base64,ext} = await fetchImageAsBase64(url);          const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
           const path = `${chapterFolder}/${filename}`;
           const downloadUrl = await putFile(path, base64, token, `Upload from URL ${id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
@@ -887,11 +852,9 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
       stories.push({ id, title:title||id, author, description, thumbnail:coverUrl||'', chapters:[newChap] });
       log('✨ Thêm truyện mới:', id);
     }else{
-      // Update existing story - preserve existing data
       story = stories.find(s=>s.id===id);
       story.chapters = story.chapters||[];
       story.chapters.push(newChap);
-      // Only update description if user changed it
       if(description && description !== story.description) {
         story.description = description;
       }
@@ -901,6 +864,7 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
 
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
+
     log('✨ Ghi stories.json...'); barEl.style.width='90%';
     try{
       await putFile('stories.json', base64Json, token, `Update stories.json (${id} chap ${chapNum})`);
@@ -910,16 +874,13 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
     barEl.style.width='100%';
     alert('🎉 Hoàn tất! Reload trang chủ để thấy thay đổi.');
     log('=== ✅ HOÀN TẤT ===');
-    
-    // Refresh story selector after successful upload
     loadStorySelector();
 
   }catch(err){
     barEl.style.width='0%';
     log('❌ LỖI:', err);
     alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));
-  }
-});
+  }});
 
 /* ===== MANAGE TAB FUNCTIONS ===== */
 async function loadManageList(){
@@ -950,7 +911,8 @@ async function loadManageList(){
       const chapTags = (story.chapters||[]).map((c,idx)=>`
         <span class="chap-tag">
           ${c.name||'Chapter '+(idx+1)}
-          <button title="Xóa chapter này" onclick="deleteChapter('${story.id}', ${idx}, '${(c.name||'Chapter '+(idx+1)).replace(/'/g,"\\'")}')">✕</button>        </span>
+          <button title="Xóa chapter này" onclick="deleteChapter('${story.id}', ${idx}, '${(c.name||'Chapter '+(idx+1)).replace(/'/g,"\\'")}')">✕</button>
+        </span>
       `).join('');
       
       card.innerHTML = `
@@ -967,8 +929,7 @@ async function loadManageList(){
       manageList.appendChild(card);
     }
     
-    barManage.style.width='100%';
-    logManageMsg(`✅ Đã tải ${stories.length} truyện.`);
+    barManage.style.width='100%';    logManageMsg(`✅ Đã tải ${stories.length} truyện.`);
   }catch(err){
     manageList.innerHTML = `<div class="small" style="text-align:center;padding:25px;color:var(--danger)">❌ Lỗi: ${err.message||JSON.stringify(err)}</div>`;
     logManageMsg('❌ Lỗi tải danh sách:', err);
@@ -999,7 +960,8 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
     
     if(chapter.images?.length){
       for(let i=0;i<chapter.images.length;i++){
-        const imgUrl = chapter.images[i];        const pathMatch = imgUrl.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
+        const imgUrl = chapter.images[i];
+        const pathMatch = imgUrl.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
         if(!pathMatch) continue;
         const imgPath = decodeURIComponent(pathMatch[1]);
         
@@ -1016,8 +978,7 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
       }
     }
     
-    barManage.style.width='75%';
-    story.chapters.splice(chapterIndex,1);
+    barManage.style.width='75%';    story.chapters.splice(chapterIndex,1);
     
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
@@ -1029,7 +990,7 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
     logManageMsg(`✅ Đã xóa "${chapterName}". Tải lại để xem thay đổi.`);
     alert('🗑️ Đã xóa chapter!');
     loadManageList();
-    loadStorySelector(); // Also refresh upload tab selector
+    loadStorySelector();
     
   }catch(err){
     barManage.style.width='0%';
@@ -1048,7 +1009,8 @@ async function confirmDeleteStory(storyId, storyTitle){
     const token = prompt('🔐 Nhập GitHub token (ghp_...) để xác nhận xóa:');
     if(!token || !token.startsWith('ghp_')){ alert('⚠️ Token không hợp lệ.'); return; }
     
-    logManageMsg(`🗑️ Bắt đầu xóa truyện "${storyTitle}" (${storyId})...`);    barManage.style.width='10%';
+    logManageMsg(`🗑️ Bắt đầu xóa truyện "${storyTitle}" (${storyId})...`);
+    barManage.style.width='10%';
     
     const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
     let stories = await res.json();
@@ -1065,8 +1027,7 @@ async function confirmDeleteStory(storyId, storyTitle){
       const pathMatch = story.thumbnail.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
       if(pathMatch) pathsToDelete.push(decodeURIComponent(pathMatch[1]));
     }
-    
-    if(story.chapters){
+        if(story.chapters){
       for(const chap of story.chapters){
         if(chap.images){
           for(const imgUrl of chap.images){
@@ -1097,7 +1058,8 @@ async function confirmDeleteStory(storyId, storyTitle){
     stories.splice(storyIdx,1);
     
     barManage.style.width='85%';
-    logManageMsg('→ Cập nhật stories.json...');    const jsonText = JSON.stringify(stories,null,2);
+    logManageMsg('→ Cập nhật stories.json...');
+    const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
     await putFile('stories.json', base64Json, token, `Delete story ${storyId}`);
     
@@ -1105,7 +1067,7 @@ async function confirmDeleteStory(storyId, storyTitle){
     logManageMsg(`✅ Đã xóa truyện "${storyTitle}".`);
     alert('🗑️ Đã xóa truyện! Reload trang để xem thay đổi.');
     loadManageList();
-    loadStorySelector(); // Also refresh upload tab selector
+    loadStorySelector();
     
   }catch(err){
     barManage.style.width='0%';
@@ -1114,12 +1076,10 @@ async function confirmDeleteStory(storyId, storyTitle){
   }
 }
 
-// Refresh buttons
-btnRefresh.addEventListener('click', ()=>{ loadManageList(); loadStorySelector(); });
+// Refresh buttonsbtnRefresh.addEventListener('click', ()=>{ loadManageList(); loadStorySelector(); });
 
 // Initialize
 renderFilesPreview();
-// Load story selector when page loads (for upload tab)
 if(!document.getElementById('tab-upload').classList.contains('hidden')) {
   loadStorySelector();
 }
