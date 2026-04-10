@@ -7,230 +7,372 @@
 <link rel="icon" href="data:,">
 
 <style>
+/* ===== THEME VARIABLES ===== */
+:root {
+  --main-color: #ff4ecd;
+  --main-glow: rgba(255, 78, 205, 0.6);
+  --bg-dark: #0a0014;
+  --bg-gradient: linear-gradient(135deg, #0a0014, #1a0033);
+  --card-bg: #140022;
+  --card-hover: #1f0033;
+  --text-primary: #ffccff;
+  --text-secondary: #e0b0ff;
+  --accent-red: #ff4ecd;
+}
+
 /* ===== BASE ===== */
-body{
-  margin:0;
+body {
+  margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background:#fafafa;
-  color:#333;
+  background: var(--bg-gradient) !important;
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff7ad9;
 }
 
 /* ===== HEADER ===== */
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#e74c3c;
-  padding:15px 20px;
-  color:#fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+header {  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(20, 0, 34, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  color: var(--main-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(255, 78, 205, 0.3);
+  border-bottom: 1px solid rgba(255, 78, 205, 0.2);
 }
-header h1{
-  margin:0;
-  font-size:1.8em;
-  font-weight:bold;
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-shadow: 0 0 15px var(--main-glow);
+  letter-spacing: 1px;
 }
-.menu-btn{
-  font-size:2em;
-  cursor:pointer;
-  background:none;
-  border:none;
-  color:#fff;
+.menu-btn {
+  font-size: 2em;
+  cursor: pointer;
+  background: linear-gradient(45deg, var(--accent-red), #7a00ff);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 78, 205, 0.4);
+}
+.menu-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px var(--main-glow);
 }
 
 /* ===== DROPDOWN MENU ===== */
-#nav-menu{
-  position:absolute;
-  top:60px;
-  right:15px;
-  width:260px;
-  background:white;
-  color:#333;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  display:none;
-  animation:fadeDown .25s ease;
+#nav-menu {
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  width: 260px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border-radius: 15px;  box-shadow: 0 10px 40px rgba(255, 78, 205, 0.3);
+  display: none;
+  animation: fadeDown 0.25s ease;
+  border: 1px solid rgba(255, 78, 205, 0.3);
+  overflow: hidden;
 }
-@keyframes fadeDown{
-  from{transform:translateY(-10px);opacity:0;}
-  to{transform:translateY(0);opacity:1;}
+@keyframes fadeDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
-#nav-menu a{
-  display:block;
-  padding:15px 18px;
-  text-decoration:none;
-  color:#333;
-  border-bottom:1px solid #eee;
+#nav-menu a {
+  display: block;
+  padding: 15px 18px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 204, 255, 0.1);
+  transition: all 0.2s ease;
 }
-#nav-menu a:last-child{border:none;}
-#nav-menu a:hover{background:#f5f5f5;}
+#nav-menu a:last-child { border: none; }
+#nav-menu a:hover {
+  background: var(--card-hover);
+  color: var(--main-color);
+  padding-left: 22px;
+}
 
 /* ===== SEARCH INSIDE MENU ===== */
-.search-box{
-  padding:12px;
+.search-box {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 204, 255, 0.1);
 }
-.search-box input{
-  width:100%;
-  padding:12px 15px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:1em;
-  outline:none;
+.search-box input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid rgba(255, 78, 205, 0.4);
+  border-radius: 10px;
+  font-size: 1em;
+  outline: none;
+  background: rgba(10, 0, 20, 0.6);
+  color: var(--text-primary);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-
-/* ===== GRID ===== */
-.container{
-  max-width:1500px;
-  margin:auto;
-  padding:20px;
+.search-box input::placeholder {
+  color: rgba(255, 204, 255, 0.5);
 }
-.story-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:25px;
-}
-.story-card{
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 5px 20px rgba(0,0,0,0.15);
-  cursor:pointer;
-  transition:.25s;
-}
-.story-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.25);
-}
-.story-card img{
-  width:100%;
-  height:320px;
-  object-fit:cover;
-}
-.story-info{
-  padding:15px;
-}
-.story-info h3{
-  margin:0 0 8px;
-  font-size:1.2em;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.story-info p{
-  margin:0;
-  color:#e74c3c;
-  font-size:0.9em;
+.search-box input:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 15px rgba(255, 78, 205, 0.4);
 }
 
-/* ===== LOADING ===== */
-.loading, .no-result{
-  text-align:center;
-  padding:60px;
-  font-size:1.4em;
-  color:#666;
+/* ===== GRID ===== */.container {
+  max-width: 1500px;
+  margin: auto;
+  padding: 20px;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* ===== STORY CARD ===== */
+.story-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(255, 78, 205, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 78, 205, 0.15);
+  position: relative;
+}
+.story-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.story-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 78, 205, 0.4);
+  border-color: var(--main-color);
+}
+.story-card:hover::before {
+  opacity: 1;
+}
+.story-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.4s ease;
+}
+.story-card:hover img {
+  transform: scale(1.05);
+}
+.story-info {
+  padding: 15px;}
+.story-info h3 {
+  margin: 0 0 8px;
+  font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 204, 255, 0.3);
+}
+.story-info p {
+  margin: 0;
+  color: var(--main-color);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* ===== LOADING & NO RESULT ===== */
+.loading, .no-result {
+  text-align: center;
+  padding: 60px;
+  font-size: 1.4em;
+  color: var(--text-secondary);
+  text-shadow: 0 0 10px rgba(255, 204, 255, 0.2);
 }
 
 /* ===== FLOAT ADD BUTTON ===== */
-.add-btn{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:#e74c3c;
-  color:#fff;
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  font-size:40px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 8px 20px rgba(231,76,60,0.6);
-  text-decoration:none;
+.add-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(45deg, var(--accent-red), #7a00ff);
+  color: #fff;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(255, 78, 205, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 999;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.add-btn:hover {
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 12px 40px rgba(255, 78, 205, 0.8);
+}
+/* ===== PETAL ANIMATION CONTAINER ===== */
+#petal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.petal {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+  text-shadow: 0 0 10px rgba(255, 78, 205, 0.5);
+  user-select: none;
+}
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+  }
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .story-grid{
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+@media(max-width: 768px) {
+  .story-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   }
-  .story-card img{
-    height:240px;
+  .story-card img {
+    height: 240px;
+  }
+  header h1 {
+    font-size: 1.5em;
+  }
+  .add-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
   }
 }
-</style>
-</head>
+
+/* ===== GLOW EFFECT ON FOCUS ===== */
+a:focus, button:focus, input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 78, 205, 0.5);
+}
+</style></head>
 
 <body>
 
+<!-- Petal Animation Container -->
+<div id="petal-container"></div>
+
 <header>
-  <h1>góc nhỏ truyện tình</h1>
+  <h1>🌸 góc nhỏ truyện tình</h1>
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 </header>
 
 <!-- MENU DROPDOWN -->
 <nav id="nav-menu">
-
   <div class="search-box">
-    <input type="text" id="search-input" placeholder="Tìm truyện...">
+    <input type="text" id="search-input" placeholder="🔍 Tìm truyện...">
   </div>
-
-  <a href="index.html">Trang chủ</a>
-  <a href="upload.html">Đăng truyện</a>
-  <a href="https://www.facebook.com/profile.php?id=61575487573210&locale=vi_VN">Liên hệ</a>
+  <a href="index.html">🏠 Trang chủ</a>
+  <a href="upload.html">📤 Đăng truyện</a>
+  <a href="https://www.facebook.com/profile.php?id=61575487573210&locale=vi_VN" target="_blank">💬 Liên hệ</a>
 </nav>
 
 <div class="container">
   <div id="story-list" class="story-grid">
-    <div class="loading">Đang tải truyện...</div>
+    <div class="loading">✨ Đang tải truyện...</div>
   </div>
 </div>
 
-<a href="upload.html" class="add-btn">+</a>
+<a href="upload.html" class="add-btn" title="Đăng truyện mới">+</a>
 
 <script>
-function toggleMenu(){
+// ===== MENU TOGGLE =====
+function toggleMenu() {
   const nav = document.getElementById('nav-menu');
   nav.style.display = (nav.style.display === 'block') ? 'none' : 'block';
 }
 
+// ===== CLOSE MENU WHEN CLICK OUTSIDE =====
+document.addEventListener('click', (e) => {
+  const nav = document.getElementById('nav-menu');
+  const btn = document.querySelector('.menu-btn');
+  if (!nav.contains(e.target) && !btn.contains(e.target)) {
+    nav.style.display = 'none';
+  }
+});
+
+// ===== LOAD STORIES =====
 let stories = [];
 const list = document.getElementById('story-list');
 const input = document.getElementById('search-input');
-
 fetch('stories.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
     stories = data;
     render(stories);
   })
-  .catch(()=> list.innerHTML='<div class="no-result">Lỗi tải dữ liệu 😢</div>');
+  .catch(() => list.innerHTML = '<div class="no-result">❌ Lỗi tải dữ liệu 😢</div>');
 
-function render(data){
-  if(data.length===0){
-    list.innerHTML='<div class="no-result">Không tìm thấy truyện nào 🥺</div>';
+function render(data) {
+  if (data.length === 0) {
+    list.innerHTML = '<div class="no-result">🥺 Không tìm thấy truyện nào</div>';
     return;
   }
-
   list.innerHTML = '';
-
-  data.forEach(s=>{
+  data.forEach(s => {
     const div = document.createElement('div');
-    div.className='story-card';
-    div.onclick=()=> location.href=`story.html?id=${s.id}`;
-    div.innerHTML=`
-      <img src="${s.thumbnail}" alt="${s.title}" loading="lazy">
+    div.className = 'story-card';
+    div.onclick = () => location.href = `story.html?id=${s.id}`;
+    div.innerHTML = `
+      <img src="${s.thumbnail}" alt="${s.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 300%22><rect fill=%22%23140022%22 width=%22200%22 height=%22300%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23ff4ecd%22 font-size=%2214%22 text-anchor=%22middle%22>No Image</text></svg>'">
       <div class="story-info">
         <h3>${s.title}</h3>
-        <p>${s.author || 'Đang cập nhật'}</p>
+        <p>${s.author || '✨ Đang cập nhật'}</p>
       </div>
     `;
     list.appendChild(div);
   });
 }
 
-input?.addEventListener('input', ()=>{
+// ===== SEARCH FUNCTIONALITY =====
+input?.addEventListener('input', () => {
   const q = input.value.trim().toLowerCase();
   render(
     q ? stories.filter(
@@ -239,6 +381,47 @@ input?.addEventListener('input', ()=>{
     ) : stories
   );
 });
+
+// ===== PETAL ANIMATION =====
+function createPetal() {
+  const container = document.getElementById('petal-container');
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = "🌸";
+  
+  const startX = Math.random() * window.innerWidth;
+  const duration = Math.random() * 3 + 4; // 4-7s  const size = Math.random() * 12 + 12; // 12-24px
+  const delay = Math.random() * 2;
+  
+  petal.style.left = startX + "px";
+  petal.style.top = "-30px";
+  petal.style.fontSize = size + "px";
+  petal.style.opacity = Math.random() * 0.5 + 0.4;
+  petal.style.animationDuration = duration + "s";
+  petal.style.animationDelay = delay + "s";
+  
+  // Add slight horizontal drift
+  const drift = (Math.random() - 0.5) * 100;
+  petal.style.setProperty('--drift', drift + 'px');
+  
+  container.appendChild(petal);
+  
+  // Remove after animation
+  setTimeout(() => petal.remove(), (duration + delay) * 1000);
+}
+
+// Create petals at interval
+setInterval(createPetal, 400);
+
+// Create initial batch
+for (let i = 0; i < 5; i++) {
+  setTimeout(createPetal, i * 200);
+}
+
+// ===== REDUCE MOTION PREFERENCE =====
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.getElementById('petal-container').style.display = 'none';
+}
 </script>
 
 </body>
