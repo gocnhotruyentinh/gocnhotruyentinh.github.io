@@ -393,12 +393,15 @@ input?.addEventListener('input', () => {
 // ===== PETAL ANIMATION =====
 function createPetal() {
   const container = document.getElementById('petal-container');
+  if (!container) return; // ✅ Thêm check an toàn
+  
   const petal = document.createElement("div");
   petal.className = "petal";
   petal.textContent = "🌸";
   
   const startX = Math.random() * window.innerWidth;
-  const duration = Math.random() * 3 + 4; // 4-7s  const size = Math.random() * 12 + 12; // 12-24px
+  const duration = Math.random() * 3 + 4;  // ✅ Xuống dòng đúng
+  const size = Math.random() * 12 + 12;    // ✅ Xuống dòng đúng
   const delay = Math.random() * 2;
   
   petal.style.left = startX + "px";
@@ -408,20 +411,16 @@ function createPetal() {
   petal.style.animationDuration = duration + "s";
   petal.style.animationDelay = delay + "s";
   
-  // Add slight horizontal drift
-  const drift = (Math.random() - 0.5) * 100;
-  petal.style.setProperty('--drift', drift + 'px');
-  
   container.appendChild(petal);
   
-  // Remove after animation
-  setTimeout(() => petal.remove(), (duration + delay) * 1000);
+  // Remove after animation ends
+  setTimeout(() => petal.remove(), (duration + delay) * 1000 + 100);
 }
 
 // Create petals at interval
 setInterval(createPetal, 400);
 
-// Create initial batch
+// Create initial batch for instant effect
 for (let i = 0; i < 5; i++) {
   setTimeout(createPetal, i * 200);
 }
