@@ -4,99 +4,298 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Quản lý Truyện & Upload — góc nhỏ truyện tình</title>
-<link rel="icon" href="data:,">
+<link rel="icon" href=",">
 <style>
-  :root{
-    --accent:#e74c3c;
-    --accent-hover:#c0392b;
-    --bg:#f4f4f9;
-    --card:#fff;
-    --muted:#666;
-    --border:#eee;
-    --danger:#e74c3c;
-    --success:#27ae60;
-  }
-  body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);margin:0;color:#222}
-  .wrap{max-width:900px;margin:28px auto;padding:20px}
-  .card{background:var(--card);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden}
-  
-  /* Header & Tabs */
-  header.card-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border)}
-  header.card-head h1{margin:0;font-size:18px;color:var(--accent)}
-  .tabs{display:flex;border-bottom:1px solid var(--border);background:#fafafa}
-  .tab-btn{flex:1;padding:12px;text-align:center;cursor:pointer;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
-  .tab-btn:hover{background:#f0f0f0}
-  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);background:#fff}
+/* ===== THEME VARIABLES ===== */
+:root {
+  --main-color: #ff4ecd;
+  --main-glow: rgba(255, 78, 205, 0.6);
+  --bg-dark: #0a0014;
+  --bg-gradient: linear-gradient(135deg, #0a0014, #1a0033);
+  --card-bg: #140022;
+  --card-hover: #1f0033;
+  --text-primary: #ffccff;
+  --text-secondary: #e0b0ff;
+  --text-muted: #b39ddb;
+  --border-color: rgba(255, 78, 205, 0.2);
+  --success: #00e676;
+  --danger: #ff5252;
+  --warning: #ffab40;
+}
 
-  .card-body{padding:18px 22px;display:grid;grid-template-columns:1fr 360px;gap:18px}
-  .full-width{grid-column:1/-1}
-  
-  /* Forms */
-  label{display:block;font-weight:600;margin:10px 0 6px;font-size:14px}
-  input[type=text], input[type=number], textarea, .urls {width:100%;box-sizing:border-box;padding:10px;border:1px solid #e6e6e6;border-radius:8px;font-size:14px}
-  textarea{min-height:86px;resize:vertical}
-  .row{display:flex;gap:12px}
-  .small{font-size:13px;color:var(--muted)}
-  .hint{font-size:13px;color:var(--muted);margin-top:6px}
+/* ===== BASE ===== */
+body {
+  font-family: 'Segoe UI', Inter, Arial, sans-serif;
+  background: var(--bg-gradient);
+  margin: 0;
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
 
-  /* Drag Drop */
-  .drop{
-    border:2px dashed rgba(231,76,60,0.22);
-    background:linear-gradient(180deg,#fff, #fff8f8);
-    padding:18px;border-radius:10px;text-align:center;cursor:pointer;color:var(--muted);
-    transition:all .2s;
-  }
-  .drop.drag{background:#fff0f0;border-color:var(--accent)}
-    /* Preview & Right Side */
-  .thumb{display:block;width:100%;height:220px;object-fit:cover;border-radius:8px;border:1px solid #eee;background:#f9f9f9}
-  .thumb-sm{width:60px;height:80px;object-fit:cover;border-radius:6px;border:1px solid #eee}
-  .right{border-left:1px solid var(--border);padding-left:18px}
-  
-  /* Buttons */
-  button.primary{background:var(--accent);color:#fff;padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
-  button.primary:hover{background:var(--accent-hover)}
-  button.secondary{background:#fff;border:1px solid #ddd;padding:10px;border-radius:8px;cursor:pointer}
-  button.secondary:hover{background:#f9f9f9}
-  button.danger{background:var(--danger);color:#fff;padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
-  button.danger:hover{background:#c0392b}
-  button.ghost{background:transparent;border:1px solid var(--danger);color:var(--danger);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px}
-  button.ghost:hover{background:#fff0f0}
-  
-  /* Progress & Log */
-  .progress{height:12px;background:#eee;border-radius:10px;overflow:hidden;margin-top:12px}
-  .bar{height:100%;width:0;background:var(--accent);transition:width .25s}
-  .log{height:180px;overflow:auto;background:#0f1720;color:#d1d5db;padding:12px;border-radius:8px;font-family:monospace;font-size:13px}
-  
-  /* Manage Tab Styles */
-  .story-card{display:flex;gap:12px;padding:12px;border:1px solid var(--border);border-radius:10px;margin-bottom:10px;background:#fff;align-items:flex-start}
-  .story-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.06)}
-  .story-info{flex:1;min-width:0}
-  .story-title{font-weight:700;margin:0 0 4px 0;font-size:15px;color:#222}
-  .story-meta{font-size:13px;color:var(--muted);margin-bottom:8px}
-  .chapter-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .chap-tag{background:#f0f0f0;padding:4px 10px;border-radius:20px;font-size:12px;display:flex;align-items:center;gap:6px}
-  .chap-tag button{background:none;border:0;color:var(--danger);cursor:pointer;font-weight:700;padding:0 2px}
-  .chap-tag button:hover{text-decoration:underline}
-  .story-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-  
-  .loading{opacity:0.6;pointer-events:none}
-  .hidden{display:none!important}
-  
-  @media(max-width:880px){
-    .card-body{grid-template-columns:1fr}
-    .right{border-left:0;padding-left:0;padding-top:10px}
-    .story-card{flex-direction:column}
-    .story-actions{flex-direction:row;justify-content:flex-end;width:100%}
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff7ad9; }
+
+/* ===== LAYOUT ===== */
+.wrap { max-width: 950px; margin: 28px auto; padding: 20px; }
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(255, 78, 205, 0.25);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+/* ===== HEADER & TABS ===== */
+header.card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(20, 0, 34, 0.8);
+}
+header.card-head h1 {
+  margin: 0; font-size: 18px; color: var(--main-color);
+  text-shadow: 0 0 10px var(--main-glow);
+}
+header.card-head .small { color: var(--text-muted); }
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(20, 0, 34, 0.6);
+}
+.tab-btn {
+  flex: 1; padding: 14px; text-align: center; cursor: pointer;
+  font-weight: 600; color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.25s ease;
+}
+.tab-btn:hover { background: var(--card-hover); color: var(--text-primary); }
+.tab-btn.active {
+  color: var(--main-color);
+  border-bottom-color: var(--main-color);
+  background: var(--card-bg);
+  box-shadow: inset 0 -2px 0 var(--main-color);
+}
+
+/* ===== CARD BODY ===== */
+.card-body {
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+}
+.full-width { grid-column: 1 / -1; }
+
+/* ===== FORMS ===== */
+label {
+  display: block; font-weight: 600; margin: 12px 0 6px;
+  font-size: 14px; color: var(--text-primary);
+}
+input[type="text"], input[type="number"], textarea, .urls {
+  width: 100%; box-sizing: border-box;
+  padding: 12px 14px;  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 14px;
+  background: rgba(10, 0, 20, 0.6);
+  color: var(--text-primary);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input::placeholder, textarea::placeholder { color: var(--text-muted); }
+input:focus, textarea:focus, .urls:focus {
+  outline: none;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 3px rgba(255, 78, 205, 0.3);
+}
+textarea { min-height: 90px; resize: vertical; }
+.row { display: flex; gap: 12px; }
+.small { font-size: 13px; color: var(--text-muted); }
+.hint { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+code {
+  background: rgba(255, 78, 205, 0.15);
+  padding: 2px 6px; border-radius: 4px;
+  color: var(--main-color); font-size: 12px;
+}
+
+/* ===== DRAG & DROP ===== */
+.drop {
+  border: 2px dashed var(--border-color);
+  background: linear-gradient(180deg, rgba(20,0,34,0.8), rgba(30,0,50,0.8));
+  padding: 20px; border-radius: 12px; text-align: center;
+  cursor: pointer; color: var(--text-secondary);
+  transition: all 0.25s ease;
+}
+.drop:hover, .drop.drag {
+  border-color: var(--main-color);
+  background: rgba(255, 78, 205, 0.08);
+  color: var(--text-primary);
+  box-shadow: 0 0 20px rgba(255, 78, 205, 0.2);
+}
+
+/* ===== PREVIEW & RIGHT SIDE ===== */
+.thumb {
+  display: block; width: 100%; height: 240px;
+  object-fit: cover; border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: rgba(10, 0, 20, 0.8);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.thumb:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(255, 78, 205, 0.3); }
+.thumb-sm {
+  width: 60px; height: 80px; object-fit: cover;
+  border-radius: 8px; border: 1px solid var(--border-color);  background: rgba(10, 0, 20, 0.8);
+}
+.right {
+  border-left: 1px solid var(--border-color);
+  padding-left: 20px;
+}
+
+/* ===== BUTTONS ===== */
+button.primary {
+  background: linear-gradient(45deg, var(--main-color), #7a00ff);
+  color: #fff; padding: 12px 20px; border-radius: 12px;
+  border: 0; font-weight: 700; cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 78, 205, 0.4);
+}
+button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 78, 205, 0.6);
+}
+button.primary:active { transform: translateY(0); }
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  padding: 10px 16px; border-radius: 10px;
+  cursor: pointer; color: var(--text-primary);
+  transition: all 0.25s ease;
+}
+button.secondary:hover {
+  background: var(--card-hover);
+  border-color: var(--main-color);
+}
+
+button.danger {
+  background: var(--danger); color: #fff;
+  padding: 8px 16px; border-radius: 10px; border: 0;
+  cursor: pointer; font-weight: 600;
+  transition: all 0.25s ease;
+}
+button.danger:hover { background: #ff1744; transform: scale(1.05); }
+
+button.ghost {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 6px 14px; border-radius: 8px;
+  cursor: pointer; font-size: 13px;
+  transition: all 0.25s ease;
+}
+button.ghost:hover {  background: rgba(255, 82, 82, 0.15);
+  color: #fff;
+}
+
+/* ===== PROGRESS & LOG ===== */
+.progress {
+  height: 10px; background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px; overflow: hidden; margin-top: 12px;
+  border: 1px solid var(--border-color);
+}
+.bar {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--main-color), #7a00ff);
+  transition: width 0.3s ease;
+}
+.log {
+  height: 180px; overflow-y: auto;
+  background: rgba(15, 23, 32, 0.9);
+  color: #d1d5db; padding: 12px;
+  border-radius: 10px;
+  font-family: 'Consolas', monospace; font-size: 13px;
+  border: 1px solid var(--border-color);
+}
+
+/* ===== MANAGE TAB ===== */
+.story-card {
+  display: flex; gap: 14px; padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px; margin-bottom: 12px;
+  background: rgba(20, 0, 34, 0.6);
+  align-items: flex-start;
+  transition: all 0.25s ease;
+}
+.story-card:hover {
+  border-color: var(--main-color);
+  box-shadow: 0 6px 20px rgba(255, 78, 205, 0.2);
+  transform: translateX(4px);
+}
+.story-info { flex: 1; min-width: 0; }
+.story-title {
+  font-weight: 700; margin: 0 0 6px 0;
+  font-size: 15px; color: var(--text-primary);
+}
+.story-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+.chapter-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chap-tag {
+  background: rgba(255, 78, 205, 0.15);
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 12px; display: flex; align-items: center; gap: 6px;
+  color: var(--text-secondary);  border: 1px solid var(--border-color);
+}
+.chap-tag button {
+  background: none; border: 0; color: var(--danger);
+  cursor: pointer; font-weight: 700; padding: 0 3px;
+  transition: transform 0.2s;
+}
+.chap-tag button:hover { transform: scale(1.3); }
+.story-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+
+.loading { opacity: 0.7; pointer-events: none; }
+.hidden { display: none !important; }
+
+/* ===== PETAL ANIMATION ===== */
+#petal-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+.petal {
+  position: absolute; top: -30px; font-size: 16px;
+  opacity: 0.7; animation: fall linear forwards;
+  text-shadow: 0 0 10px rgba(255, 78, 205, 0.5);
+  user-select: none;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 900px) {
+  .card-body { grid-template-columns: 1fr; }
+  .right { border-left: 0; padding-left: 0; padding-top: 15px; }
+  .story-card { flex-direction: column; }
+  .story-actions { flex-direction: row; justify-content: flex-end; width: 100%; }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  #petal-container { display: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
+
+<div id="petal-container"></div>
+
 <div class="wrap">
   <div class="card">
-    <header class="card-head">
-      <h1>📚 Quản lý Truyện — góc nhỏ truyện tình</h1>
-      <div class="small">🥥</div>
+    <header class="card-head">      <h1>📚 Quản lý Truyện — góc nhỏ truyện tình</h1>
+      <div class="small">🌸</div>
     </header>
+
     <!-- Tabs -->
     <div class="tabs">
       <div class="tab-btn active" data-tab="upload">➕ Upload Chapter</div>
@@ -108,13 +307,14 @@
       <div class="left">
         <label>Tên truyện (chỉ bắt buộc nếu là truyện mới)</label>
         <input id="title" type="text" placeholder="nhập Tên truyện">
-        <div class="row" style="margin-top:8px">
+        
+        <div class="row" style="margin-top:10px">
           <div style="flex:1">
             <label>ID truyện (bắt buộc)</label>
             <input id="id" type="text" placeholder="id không dấu, viết thường">
             <div class="hint">id truyện: <code>dùng để cập nhật truyện</code></div>
           </div>
-          <div style="width:120px">
+          <div style="width:130px">
             <label>Số chapter</label>
             <input id="chap-num" type="number" min="1" value="1">
           </div>
@@ -126,63 +326,63 @@
         <label>Tóm tắt (mô tả)</label>
         <textarea id="description" placeholder="Mô tả / tóm tắt ngắn"></textarea>
 
-        <hr style="margin:12px 0;border:none;border-top:1px solid #f5f5f5">
+        <hr style="margin:16px 0;border:none;border-top:1px solid var(--border-color)">
 
         <label>Ảnh bìa (chỉ cần khi thêm truyện mới)</label>
         <input id="cover" type="file" accept="image/*">
         <div class="hint">Nếu truyện đã tồn tại bạn có thể bỏ trống.</div>
 
-        <label style="margin-top:12px">Ảnh chapter — Chọn file hoặc dán danh sách URL</label>
+        <label style="margin-top:14px">Ảnh chapter — Chọn file hoặc dán danh sách URL</label>
 
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <div style="flex:1">
-            <div id="dropZone" class="drop">Kéo-thả ảnh vào đây hoặc nhấn chọn (files)</div>
+        <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1;min-width:280px">
+            <div id="dropZone" class="drop">📁 Kéo-thả ảnh vào đây hoặc nhấn chọn file</div>
             <input id="file-input" type="file" accept="image/*" multiple style="display:none">
-            <div class="hint">Hoặc: dán danh sách URL ảnh (mỗi URL 1 dòng) vào ô bên phải.</div>
+            <div class="hint">💡 Hoặc: dán danh sách URL ảnh (mỗi URL 1 dòng) vào ô bên phải.</div>
           </div>
-          <div style="width:360px">
-            <label>Danh sách URL ảnh (mỗi dòng 1 URL)</label>
-            <textarea id="url-list" class="urls" placeholder="https://i239.netcdn.one/..../0000.webp&#10;https://.../0001.webp"></textarea>
+          <div style="width:360px;min-width:280px">
+            <label>Danh sách URL ảnh (mỗi dòng 1 URL)</label>            <textarea id="url-list" class="urls" placeholder="https://i239.netcdn.one/..../0000.webp&#10;https://.../0001.webp"></textarea>
             <div class="hint">Nếu bạn cung cấp cả file và URL thì file sẽ được ưu tiên.</div>
           </div>
         </div>
-        <div style="margin-top:12px">
-          <button class="primary" id="btn-upload">Đăng / Cập nhật (cần mã upload)</button>
-          <button class="secondary" id="btn-clear" style="margin-left:10px">Xóa lựa chọn</button>
-          <div class="progress"><div id="bar" class="bar"></div></div>
+
+        <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="primary" id="btn-upload">✨ Đăng / Cập nhật</button>
+          <button class="secondary" id="btn-clear">🗑️ Xóa lựa chọn</button>
+          <div class="progress" style="flex:1;min-width:200px"><div id="bar" class="bar"></div></div>
         </div>
 
-        <div style="margin-top:12px">
-          <label>Log (chi tiết)</label>
-          <div id="log" class="log">Sẵn sàng.</div>
+        <div style="margin-top:14px">
+          <label>📋 Log (chi tiết)</label>
+          <div id="log" class="log">✨ Sẵn sàng. Nhập thông tin và bắt đầu upload!</div>
         </div>
       </div>
 
       <div class="right">
-        <label>Preview ảnh bìa</label>
+        <label>🖼️ Preview ảnh bìa</label>
         <img id="cover-preview" class="thumb" src="" alt="(chưa chọn ảnh bìa)">
-        <div style="height:12px"></div>
+        <div style="height:14px"></div>
 
-        <label>Danh sách ảnh chapter (preview tên / count)</label>
-        <div id="files-preview" style="background:#fff;border-radius:8px;padding:10px;border:1px solid #f0f0f0;min-height:120px">
-          Chưa chọn ảnh.
+        <label>📚 Danh sách ảnh chapter</label>
+        <div id="files-preview" style="background:rgba(10,0,20,0.6);border-radius:10px;padding:12px;border:1px solid var(--border-color);min-height:140px;max-height:300px;overflow-y:auto">
+          <div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>
         </div>
-        <div class="hint" style="margin-top:8px">Tên ảnh sẽ lưu vào: <code>images/{id}/chap-{num}/{index}.{ext}</code></div>
+        <div class="hint" style="margin-top:10px">📁 Tên ảnh sẽ lưu vào: <code>images/{id}/chap-{num}/{index}.{ext}</code></div>
       </div>
     </div>
 
-    <!-- Manage Tab (NEW) -->
+    <!-- Manage Tab -->
     <div id="tab-manage" class="card-body hidden full-width">
       <div class="full-width">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <label style="margin:0">Danh sách truyện trong stories.json</label>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <label style="margin:0">📦 Danh sách truyện trong stories.json</label>
           <button class="secondary" id="btn-refresh">🔄 Tải lại</button>
         </div>
-        <div id="manage-list" style="display:flex;flex-direction:column;gap:8px">
-          <div class="small" style="text-align:center;padding:20px">Đang tải...</div>
+        <div id="manage-list" style="display:flex;flex-direction:column;gap:10px;max-height:500px;overflow-y:auto;padding-right:5px">
+          <div class="small" style="text-align:center;padding:25px;color:var(--text-muted)">Đang tải...</div>
         </div>
-        <div class="progress" style="margin-top:12px"><div id="bar-manage" class="bar"></div></div>
-        <div id="log-manage" class="log" style="margin-top:12px;height:120px">Chờ thao tác...</div>
+        <div class="progress" style="margin-top:14px"><div id="bar-manage" class="bar"></div></div>
+        <div id="log-manage" class="log" style="margin-top:14px;height:140px">⏳ Chờ thao tác...</div>
       </div>
     </div>
 
@@ -190,12 +390,26 @@
 </div>
 
 <script>
-/*
-  upload.html — Quản lý Upload & Xóa truyện/chapter
-  - Upload: images/{id}/chap-{num}/{index}.{ext}
-  - Delete: Xóa file ảnh + cập nhật stories.json
-  - Token: Hỏi mỗi lần thao tác (không lưu)*/
+/* ===== PETAL ANIMATION ===== */function createPetal() {
+  const box = document.getElementById('petal-container');
+  if (!box) return;
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = "🌸";
+  const startX = Math.random() * window.innerWidth;
+  const duration = Math.random() * 3 + 4;
+  const size = Math.random() * 12 + 12;
+  petal.style.left = startX + "px";
+  petal.style.fontSize = size + "px";
+  petal.style.opacity = Math.random() * 0.5 + 0.3;
+  petal.style.animationDuration = duration + "s";
+  box.appendChild(petal);
+  setTimeout(() => petal.remove(), (duration + 0.5) * 1000);
+}
+setInterval(createPetal, 500);
+for(let i=0; i<3; i++) setTimeout(createPetal, i*200);
 
+/* ===== GITHUB API & LOGIC (GIỮ NGUYÊN) ===== */
 const API_BASE = "https://api.github.com/repos/gocnhotruyentinh/gocnhotruyentinh.github.io/contents";
 const RAW_BASE = "https://raw.githubusercontent.com/gocnhotruyentinh/gocnhotruyentinh.github.io/main";
 
@@ -226,8 +440,6 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     if(tab==='manage') loadManageList();
   });
 });
-
-// ============ LOGGING ============
 function log(...args){
   const line = '[' + (new Date()).toLocaleTimeString() + '] ' + args.map(a=> {
     if (typeof a === 'object') return JSON.stringify(a);
@@ -240,10 +452,11 @@ function logManageMsg(...args){
   logManage.innerText = line + '\n' + logManage.innerText;
 }
 
-// ============ UPLOAD TAB ============
+// Upload Tab Events
 dropZone.addEventListener('click', ()=> fileInput.click());
 dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('drag') });
-dropZone.addEventListener('dragleave', ()=> dropZone.classList.remove('drag'));dropZone.addEventListener('drop', e => {
+dropZone.addEventListener('dragleave', ()=> dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop', e => {
   e.preventDefault(); dropZone.classList.remove('drag');
   fileInput.files = e.dataTransfer.files; renderFilesPreview();
 });
@@ -254,45 +467,37 @@ coverInput.addEventListener('change', ()=>{
 });
 document.getElementById('btn-clear').addEventListener('click', ()=>{
   fileInput.value=''; urlListEl.value=''; coverInput.value='';
-  coverPreview.src=''; filesPreview.innerHTML='Chưa chọn ảnh.';
-  log('Đã xóa lựa chọn.'); barEl.style.width='0%';
+  coverPreview.src=''; filesPreview.innerHTML='<div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>';
+  log('✨ Đã xóa lựa chọn.'); barEl.style.width='0%';
 });
 
 function renderFilesPreview(){
   const files = Array.from(fileInput.files || []);
-  if(!files.length){ filesPreview.innerHTML='Chưa chọn ảnh.'; return; }
+  if(!files.length){ filesPreview.innerHTML='<div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>'; return; }
   filesPreview.innerHTML='';
   files.slice(0,200).forEach((f,i)=>{
     const el=document.createElement('div');
-    el.style.padding='6px 4px'; el.style.borderBottom='1px solid #f6f6f6'; el.style.fontSize='13px';
+    el.style.padding='8px 6px'; el.style.borderBottom='1px solid rgba(255,204,255,0.08)'; el.style.fontSize='13px';
+    el.style.color='var(--text-secondary)';
     el.innerText = `${i+1}. ${f.name} — ${Math.round(f.size/1024)} KB`;
     filesPreview.appendChild(el);
   });
   if(files.length>200){
-    const more=document.createElement('div'); more.className='small'; more.style.marginTop='8px';
-    more.innerText = `Chỉ hiển thị 200 file đầu (tổng: ${files.length})`;
+    const more=document.createElement('div'); more.className='small'; more.style.marginTop='10px'; more.style.color='var(--text-muted)';
+    more.innerText = `⚡ Chỉ hiển thị 200 file đầu (tổng: ${files.length})`;
     filesPreview.appendChild(more);
   }
 }
-
-// ============ GITHUB API HELPERS ============
+// GitHub Helpers (giữ nguyên logic)
 async function getShaForPath(path, token){
   const url = `${API_BASE}/${encodeURIComponent(path)}`;
   const res = await fetch(url, { headers: { Authorization: `token ${token}` }});
   if(res.status===200){ const j=await res.json(); return j.sha; }
   return null;
 }
-
-async function getFileTree(path, token, branch='main'){
-  // Get directory listing to find all files with their sha
-  const url = `${API_BASE}/${encodeURIComponent(path)}?ref=${branch}`;
-  const res = await fetch(url, { headers: { Authorization: `token ${token}` }});
-  if(!res.ok) return null;
-  return await res.json();
-}
-
 async function putFile(path, base64Content, token, message){
-  const apiUrl = `${API_BASE}/${encodeURIComponent(path)}`;  const payload = { message: message||("upload "+path), content: base64Content, branch: 'main' };
+  const apiUrl = `${API_BASE}/${encodeURIComponent(path)}`;
+  const payload = { message: message||("upload "+path), content: base64Content, branch: 'main' };
   try{
     const check = await fetch(apiUrl, { headers: { Authorization: `token ${token}` }});
     if(check.ok){ const j=await check.json(); if(j.sha) payload.sha=j.sha; }
@@ -306,7 +511,6 @@ async function putFile(path, base64Content, token, message){
   if(!res.ok) throw { status:res.status, body:json };
   return json.content?.download_url || null;
 }
-
 async function deleteFile(path, sha, token, message){
   const apiUrl = `${API_BASE}/${encodeURIComponent(path)}`;
   const res = await fetch(apiUrl, {
@@ -319,7 +523,6 @@ async function deleteFile(path, sha, token, message){
   if(!res.ok) throw { status:res.status, body:json };
   return true;
 }
-
 async function fetchImageAsBase64(url){
   const res = await fetch(url, { mode:'cors' });
   if(!res.ok) throw { message:'Fetch image failed', status:res.status, url };
@@ -331,18 +534,15 @@ async function fetchImageAsBase64(url){
     fr.readAsDataURL(blob);
   });
   let ext='';
-  if(blob.type){
-    const m=blob.type.split('/'); ext=m[1]||'';
-    if(ext.includes('jpeg')) ext='jpg';
-  }
+  if(blob.type){ const m=blob.type.split('/'); ext=m[1]||''; if(ext.includes('jpeg')) ext='jpg'; }
   if(!ext){ const p=url.split('?')[0].split('.'); ext=p[p.length-1]||'jpg'; ext=ext.slice(0,4); }
   return { base64:b64, ext };
 }
-
-// ============ UPLOAD HANDLER ============
+// Upload Handler (giữ nguyên logic)
 document.getElementById('btn-upload').addEventListener('click', async ()=>{
-  try{    const token = prompt('Nhập GitHub token (ghp_...):');
-    if(!token || !token.startsWith('ghp_')){ alert('Token không hợp lệ.'); log('Hủy: token invalid'); return; }
+  try{
+    const token = prompt('🔐 Nhập GitHub token (ghp_...):');
+    if(!token || !token.startsWith('ghp_')){ alert('⚠️ Token không hợp lệ.'); log('❌ Hủy: token invalid'); return; }
 
     const id = (document.getElementById('id').value||'').trim().toLowerCase().replace(/[^a-z0-9_-]/g,'');
     const title = (document.getElementById('title').value||'').trim();
@@ -350,28 +550,27 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
     const description = (document.getElementById('description').value||'').trim() || '';
     const chapNum = parseInt(document.getElementById('chap-num').value||'1',10) || 1;
 
-    if(!id){ alert('Vui lòng điền ID truyện.'); return; }
+    if(!id){ alert('⚠️ Vui lòng điền ID truyện.'); return; }
 
-    log('Lấy stories.json...'); barEl.style.width='6%';
+    log('✨ Đang lấy stories.json...'); barEl.style.width='6%';
     let stories=[], storiesSha=null;
     try{
       const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
       if(!res.ok) throw { message:'Không fetch được stories.json', status:res.status };
       stories = await res.json();
       storiesSha = await getShaForPath('stories.json', token);
-    }catch(e){ log('Không lấy được stories.json, tạo mới nếu cần.', e); stories=[]; storiesSha=null; }
+    }catch(e){ log('⚠️ Không lấy được stories.json, tạo mới nếu cần.', e); stories=[]; storiesSha=null; }
     barEl.style.width='10%';
 
     let story = stories.find(s=>s.id===id);
     const isNew = !story;
-    if(isNew && !title){ if(!confirm('Truyện mới chưa nhập Title. Tiếp tục?')) return; }
+    if(isNew && !title){ if(!confirm('⚠️ Truyện mới chưa nhập Title. Tiếp tục?')) return; }
 
-    // Upload cover if new
     let coverUrl='';
     if(isNew){
       const coverFile = coverInput.files[0];
       if(coverFile){
-        log('Upload cover...'); barEl.style.width='18%';
+        log('✨ Upload cover...'); barEl.style.width='18%';
         const coverB64 = await new Promise((resolve,reject)=>{
           const fr=new FileReader();
           fr.onload=()=>resolve(fr.result.split(',')[1]);
@@ -383,20 +582,19 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         try{
           const uploaded = await putFile(coverPath, coverB64, token, `Upload cover ${id}`);
           coverUrl = uploaded || `${RAW_BASE}/${coverPath}`;
-          log('Cover uploaded ->', coverUrl);
+          log('✅ Cover uploaded ->', coverUrl);
         }catch(err){ log('❌ Upload cover lỗi:', err); throw `Upload cover failed: ${JSON.stringify(err)}`; }
       }
     }
-
-    // Prepare chapter images
     const files = Array.from(fileInput.files||[]);
-    let urlsFromList = (urlListEl.value||'').split(/\r?\n/).map(s=>s.trim()).filter(Boolean);    if(!files.length && !urlsFromList.length){ if(!confirm('Chưa chọn file/URL. Tiếp tục không có ảnh?')) return; }
+    let urlsFromList = (urlListEl.value||'').split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    if(!files.length && !urlsFromList.length){ if(!confirm('⚠️ Chưa chọn file/URL. Tiếp tục không có ảnh?')) return; }
 
     const imageDownloadUrls = [];
     const chapterFolder = `images/${id}/chap-${chapNum}`;
 
     if(files.length){
-      log(`Upload ${files.length} file(s) to ${chapterFolder}...`);
+      log(`✨ Upload ${files.length} file(s) to ${chapterFolder}...`);
       for(let i=0;i<files.length;i++){
         const f=files[i];
         barEl.style.width = `${18+Math.round((i/files.length)*60)}%`;
@@ -414,11 +612,11 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         try{
           const downloadUrl = await putFile(path, base64, token, `Upload ${id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
-          log('   uploaded ->', imageDownloadUrls[i]);
+          log('✅ uploaded ->', imageDownloadUrls[i]);
         }catch(err){ log('❌ Upload lỗi:', f.name, err); throw `Upload file failed: ${JSON.stringify(err)}`; }
       }
     }else{
-      log(`Sử dụng ${urlsFromList.length} URL...`);
+      log(`✨ Sử dụng ${urlsFromList.length} URL...`);
       for(let i=0;i<urlsFromList.length;i++){
         const url=urlsFromList[i];
         barEl.style.width = `${18+Math.round((i/Math.max(1,urlsFromList.length))*60)}%`;
@@ -429,7 +627,7 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
           const path = `${chapterFolder}/${filename}`;
           const downloadUrl = await putFile(path, base64, token, `Upload from URL ${id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
-          log('   uploaded ->', imageDownloadUrls[i]);
+          log('✅ uploaded ->', imageDownloadUrls[i]);
         }catch(err){
           log('❌ Lỗi URL:', url, err);
           if(err?.message?.includes('Failed to fetch')) throw `CORS error với URL: ${url}`;
@@ -437,48 +635,47 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         }
       }
     }
-
     if(!imageDownloadUrls.length) throw 'Không có ảnh được upload.';
     barEl.style.width='82%';
     const newChap = { name:`Chapter ${chapNum}`, images:imageDownloadUrls };
 
     if(isNew){
       stories.push({ id, title:title||id, author, description, thumbnail:coverUrl||'', chapters:[newChap] });
-      log('Thêm truyện mới:', id);
+      log('✨ Thêm truyện mới:', id);
     }else{
       story.chapters = story.chapters||[];
       story.chapters.push(newChap);
       if(description) story.description=description;
       if(coverUrl) story.thumbnail=coverUrl;
-      log('Cập nhật truyện, thêm chapter:', id);
+      log('✨ Cập nhật truyện, thêm chapter:', id);
     }
 
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
 
-    log('Ghi stories.json...'); barEl.style.width='90%';
+    log('✨ Ghi stories.json...'); barEl.style.width='90%';
     try{
       await putFile('stories.json', base64Json, token, `Update stories.json (${id} chap ${chapNum})`);
       log('✅ stories.json đã cập nhật.');
     }catch(err){ log('❌ Upload stories.json lỗi:', err); throw `Upload stories.json failed: ${JSON.stringify(err)}`; }
 
     barEl.style.width='100%';
-    alert('Hoàn tất! Reload trang chủ để thấy thay đổi.');
-    log('=== HOÀN TẤT ===');
+    alert('🎉 Hoàn tất! Reload trang chủ để thấy thay đổi.');
+    log('=== ✅ HOÀN TẤT ===');
 
   }catch(err){
     barEl.style.width='0%';
-    log('LỖI:', err);
+    log('❌ LỖI:', err);
     alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));
   }
 });
 
-// ============ MANAGE TAB FUNCTIONS ============
+// Manage Tab Functions (giữ nguyên logic)
 async function loadManageList(){
   try{
-    manageList.innerHTML = '<div class="small" style="text-align:center;padding:20px">Đang tải...</div>';
+    manageList.innerHTML = '<div class="small" style="text-align:center;padding:25px;color:var(--text-muted)">Đang tải...</div>';
     barManage.style.width='30%';
-    logManageMsg('Đang tải stories.json...');
+    logManageMsg('✨ Đang tải stories.json...');
 
     const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
     if(!res.ok) throw { message:'Không fetch được stories.json', status:res.status };
@@ -487,8 +684,8 @@ async function loadManageList(){
     barManage.style.width='60%';
     
     if(!stories.length){
-      manageList.innerHTML = '<div class="small" style="text-align:center;padding:20px">Không có truyện nào.</div>';
-      barManage.style.width='100%';      return;
+      manageList.innerHTML = '<div class="small" style="text-align:center;padding:25px;color:var(--text-muted)">📭 Không có truyện nào.</div>';      barManage.style.width='100%';
+      return;
     }
 
     manageList.innerHTML = '';
@@ -496,7 +693,7 @@ async function loadManageList(){
       const card = document.createElement('div');
       card.className = 'story-card';
       
-      const thumb = story.thumbnail || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80"%3E%3Crect fill="%23f0f0f0" width="60" height="80"/%3E%3Ctext x="50%25" y="50%25" font-size="10" text-anchor="middle" fill="%23999" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E';
+      const thumb = story.thumbnail || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="60" height="80" viewBox="0 0 60 80"%3E%3Crect fill="%23140022" width="60" height="80"/%3E%3Ctext x="50%25" y="50%25" font-size="10" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E';
       
       const chapTags = (story.chapters||[]).map((c,idx)=>`
         <span class="chap-tag">
@@ -510,7 +707,7 @@ async function loadManageList(){
         <div class="story-info">
           <div class="story-title">${story.title||story.id}</div>
           <div class="story-meta">ID: <code>${story.id}</code> • ${story.chapters?.length||0} chapter${story.author?` • ${story.author}`:''}</div>
-          <div class="chapter-list">${chapTags||'<span class="small">Chưa có chapter</span>'}</div>
+          <div class="chapter-list">${chapTags||'<span class="small" style="color:var(--text-muted)">Chưa có chapter</span>'}</div>
         </div>
         <div class="story-actions">
           <button class="ghost" onclick="confirmDeleteStory('${story.id}', '${(story.title||story.id).replace(/'/g,"\\'")}')">🗑️ Xóa truyện</button>
@@ -522,22 +719,21 @@ async function loadManageList(){
     barManage.style.width='100%';
     logManageMsg(`✅ Đã tải ${stories.length} truyện.`);
   }catch(err){
-    manageList.innerHTML = `<div class="small" style="text-align:center;padding:20px;color:var(--danger)">Lỗi: ${err.message||JSON.stringify(err)}</div>`;
+    manageList.innerHTML = `<div class="small" style="text-align:center;padding:25px;color:var(--danger)">❌ Lỗi: ${err.message||JSON.stringify(err)}</div>`;
     logManageMsg('❌ Lỗi tải danh sách:', err);
     barManage.style.width='0%';
   }
 }
 
 async function deleteChapter(storyId, chapterIndex, chapterName){
-  if(!confirm(`Xóa "${chapterName}" của truyện "${storyId}"?\n\n⚠️ Hành động này sẽ xóa file ảnh trên GitHub và không thể hoàn tác.`)) return;
+  if(!confirm(`❓ Xóa "${chapterName}" của truyện "${storyId}"?\n\n⚠️ Hành động này sẽ xóa file ảnh trên GitHub và không thể hoàn tác.`)) return;
   
   try{
-    const token = prompt('Nhập GitHub token (ghp_...) để xác nhận xóa:');
-    if(!token || !token.startsWith('ghp_')){ alert('Token không hợp lệ.'); return; }
+    const token = prompt('🔐 Nhập GitHub token (ghp_...) để xác nhận xóa:');
+    if(!token || !token.startsWith('ghp_')){ alert('⚠️ Token không hợp lệ.'); return; }
     
-    logManageMsg(`Bắt đầu xóa chapter "${chapterName}"...`);
-    barManage.style.width='10%';
-        // Load stories.json
+    logManageMsg(`✨ Bắt đầu xóa chapter "${chapterName}"...`);
+    barManage.style.width='10%';    
     const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
     const stories = await res.json();
     const story = stories.find(s=>s.id===storyId);
@@ -549,12 +745,9 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
     barManage.style.width='30%';
     logManageMsg(`→ Xóa ${chapter.images?.length||0} ảnh của chapter...`);
     
-    // Delete each image file
     if(chapter.images?.length){
       for(let i=0;i<chapter.images.length;i++){
         const imgUrl = chapter.images[i];
-        // Extract path from raw.githubusercontent.com URL
-        // Format: https://raw.githubusercontent.com/user/repo/main/images/id/chap-N/001.jpg
         const pathMatch = imgUrl.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
         if(!pathMatch) continue;
         const imgPath = decodeURIComponent(pathMatch[1]);
@@ -572,45 +765,39 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
       }
     }
     
-    // Also try to delete cover if this was the only chapter and story has no other chapters
     barManage.style.width='75%';
-    
-    // Remove chapter from array
     story.chapters.splice(chapterIndex,1);
     
-    // If no chapters left and user wants, can delete whole story - but we'll keep the entry for now
-    // Update stories.json
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
     
     logManageMsg('→ Cập nhật stories.json...');
     await putFile('stories.json', base64Json, token, `Delete chapter ${chapterIndex} from ${storyId}`);
     
-    barManage.style.width='100%';    logManageMsg(`✅ Đã xóa "${chapterName}". Tải lại để xem thay đổi.`);
-    alert('Đã xóa chapter!');
-    loadManageList(); // Refresh list
+    barManage.style.width='100%';
+    logManageMsg(`✅ Đã xóa "${chapterName}". Tải lại để xem thay đổi.`);
+    alert('🗑️ Đã xóa chapter!');
+    loadManageList();
     
   }catch(err){
     barManage.style.width='0%';
     logManageMsg('❌ Lỗi xóa chapter:', err);
-    alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));
-  }
+    alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));  }
 }
 
 async function confirmDeleteStory(storyId, storyTitle){
-  if(!confirm(`XÓA TOÀN BỘ TRUYỆN "${storyTitle}"?\n\nID: ${storyId}\n\n⚠️ Hành động này sẽ:\n• Xóa entry trong stories.json\n• Xóa thư mục ảnh trên GitHub (cover + tất cả chapters)\n\nKHÔNG THỂ HOÀN TÁC!`)) return;
+  if(!confirm(`❌ XÓA TOÀN BỘ TRUYỆN "${storyTitle}"?\n\nID: ${storyId}\n\n⚠️ Hành động này sẽ:\n• Xóa entry trong stories.json\n• Xóa thư mục ảnh trên GitHub (cover + tất cả chapters)\n\nKHÔNG THỂ HOÀN TÁC!`)) return;
   
-  const confirmText = prompt(`Gõ "${storyId}" để xác nhận xóa vĩnh viễn:`);
-  if(confirmText !== storyId){ alert('Xác nhận không khớp. Hủy.'); return; }
+  const confirmText = prompt(`🔐 Gõ "${storyId}" để xác nhận xóa vĩnh viễn:`);
+  if(confirmText !== storyId){ alert('❌ Xác nhận không khớp. Hủy.'); return; }
   
   try{
-    const token = prompt('Nhập GitHub token (ghp_...) để xác nhận xóa:');
-    if(!token || !token.startsWith('ghp_')){ alert('Token không hợp lệ.'); return; }
+    const token = prompt('🔐 Nhập GitHub token (ghp_...) để xác nhận xóa:');
+    if(!token || !token.startsWith('ghp_')){ alert('⚠️ Token không hợp lệ.'); return; }
     
     logManageMsg(`🗑️ Bắt đầu xóa truyện "${storyTitle}" (${storyId})...`);
     barManage.style.width='10%';
     
-    // Load stories
     const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
     let stories = await res.json();
     
@@ -620,22 +807,20 @@ async function confirmDeleteStory(storyId, storyTitle){
     const story = stories[storyIdx];
     barManage.style.width='25%';
     
-    // Collect all image paths to delete
     const pathsToDelete = [];
     
-    // Cover image
     if(story.thumbnail){
       const pathMatch = story.thumbnail.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
       if(pathMatch) pathsToDelete.push(decodeURIComponent(pathMatch[1]));
     }
     
-    // Chapter images
     if(story.chapters){
       for(const chap of story.chapters){
         if(chap.images){
           for(const imgUrl of chap.images){
             const pathMatch = imgUrl.match(/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[^/]+\/(.+)$/);
-            if(pathMatch) pathsToDelete.push(decodeURIComponent(pathMatch[1]));          }
+            if(pathMatch) pathsToDelete.push(decodeURIComponent(pathMatch[1]));
+          }
         }
       }
     }
@@ -643,12 +828,10 @@ async function confirmDeleteStory(storyId, storyTitle){
     logManageMsg(`→ Sẽ xóa ${pathsToDelete.length} file ảnh...`);
     barManage.style.width='40%';
     
-    // Delete files one by one
     for(let i=0;i<pathsToDelete.length;i++){
       const path = pathsToDelete[i];
       try{
-        const sha = await getShaForPath(path, token);
-        if(sha){
+        const sha = await getShaForPath(path, token);        if(sha){
           await deleteFile(path, sha, token, `Delete ${storyId} file ${i+1}`);
           logManageMsg(`   ✓ ${path}`);
         }
@@ -658,10 +841,8 @@ async function confirmDeleteStory(storyId, storyTitle){
       barManage.style.width = `${40 + Math.round((i/pathsToDelete.length)*40)}%`;
     }
     
-    // Remove from stories array
     stories.splice(storyIdx,1);
     
-    // Update stories.json
     barManage.style.width='85%';
     logManageMsg('→ Cập nhật stories.json...');
     const jsonText = JSON.stringify(stories,null,2);
@@ -670,7 +851,7 @@ async function confirmDeleteStory(storyId, storyTitle){
     
     barManage.style.width='100%';
     logManageMsg(`✅ Đã xóa truyện "${storyTitle}".`);
-    alert('Đã xóa truyện! Reload trang để xem thay đổi.');
+    alert('🗑️ Đã xóa truyện! Reload trang để xem thay đổi.');
     loadManageList();
     
   }catch(err){
@@ -680,10 +861,9 @@ async function confirmDeleteStory(storyId, storyTitle){
   }
 }
 
-// Refresh button
 btnRefresh.addEventListener('click', loadManageList);
+renderFilesPreview();
+</script>
 
-// Initialize
-renderFilesPreview();</script>
 </body>
 </html>
