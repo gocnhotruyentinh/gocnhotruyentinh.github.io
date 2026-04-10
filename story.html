@@ -4,215 +4,280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">góc nhỏ truyện tình</title>
-<link rel="icon" href="data:,">
+<link rel="icon" href=",">
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f4f9;
-    color: #333;
-  }
+/* ===== THEME VARIABLES ===== */
+:root {
+  --main-color: #ff4ecd;
+  --main-glow: rgba(255, 78, 205, 0.6);
+  --bg-dark: #0a0014;
+  --bg-gradient: linear-gradient(135deg, #0a0014, #1a0033);
+  --card-bg: #140022;
+  --card-hover: #1f0033;
+  --text-primary: #ffccff;
+  --text-secondary: #e0b0ff;
+  --text-muted: #b39ddb;
+  --border-color: rgba(255, 78, 205, 0.2);
+}
 
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255,255,255,0.95);
-    z-index: 1000;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    backdrop-filter: blur(5px);
-  }
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
 
-  header h1 {
-    font-size: 1.5em;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #e74c3c;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff7ad9; }
 
-  header button {
-    background: #e74c3c;
-    border: none;
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 25px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+/* ===== HEADER ===== */
+header {
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: rgba(20, 0, 34, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 4px 25px rgba(255, 78, 205, 0.3);
+  border-bottom: 1px solid var(--border-color);
+}
+header h1 {  font-size: 1.5em; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: var(--text-primary);
+  text-shadow: 0 0 12px var(--main-glow);
+}
+header button {
+  background: linear-gradient(45deg, var(--main-color), #7a00ff);
+  border: none; color: #fff;
+  padding: 10px 20px; border-radius: 25px;
+  font-size: 1em; cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 78, 205, 0.4);
+}
+header button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.6);
+}
+header button:active { transform: translateY(0); }
 
-  header button:hover { background: #c0392b; }
+/* ===== CONTAINER & DETAIL ===== */
+.container {
+  max-width: 1100px;
+  margin: 100px auto 40px;
+  padding: 0 20px;
+}
+.detail {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(255, 78, 205, 0.25);
+  overflow: hidden;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+}
 
-  .container {
-    max-width: 1100px;
-    margin: 100px auto 40px;
-    padding: 0 20px;
-  }
+/* ===== HEADER DETAIL ===== */
+.header-detail {
+  display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;
+}
+.cover img {
+  width: 100%; max-width: 380px;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(255, 78, 205, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 2px solid var(--border-color);
+  background: rgba(10, 0, 20, 0.8);
+}
+.cover img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 18px 50px rgba(255, 78, 205, 0.5);}
+.info { flex: 1; min-width: 300px; }
+.info h1 {
+  font-size: 2.5em; margin: 0 0 18px;
+  color: var(--text-primary);
+  text-shadow: 0 0 15px rgba(255, 204, 255, 0.4);
+  line-height: 1.3;
+}
+.meta p {
+  font-size: 1.1em; margin: 8px 0; color: var(--text-secondary);
+}
+.meta strong { color: var(--main-color); }
 
-  .detail {
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    overflow: hidden;
-    padding: 20px;
-  }
+/* ===== SYNOPSIS ===== */
+.synopsis {
+  background: rgba(20, 0, 34, 0.7);
+  padding: 22px 25px; border-radius: 14px;
+  margin: 28px 0; line-height: 1.9;
+  border-left: 4px solid var(--main-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.synopsis strong { color: var(--main-color); }
 
-  .header-detail {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
+/* ===== CHAPTER LIST ===== */
+.chap-list h3 {
+  font-size: 1.6em; margin: 45px 0 22px;
+  color: var(--text-primary);
+  border-bottom: 3px solid var(--main-color);
+  padding-bottom: 12px;
+  text-shadow: 0 0 10px rgba(255, 78, 205, 0.3);
+}
+.chap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 16px;
+}
+.chap-btn {
+  background: linear-gradient(135deg, rgba(255,78,205,0.15), rgba(122,0,255,0.1));
+  color: var(--text-primary);
+  padding: 16px 12px; text-align: center;
+  border-radius: 14px; cursor: pointer;
+  font-weight: 600; font-size: 0.95em;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px rgba(255, 78, 205, 0.2);
+}
+.chap-btn:hover {
+  background: linear-gradient(135deg, var(--main-color), #7a00ff);
+  transform: translateY(-6px);  box-shadow: 0 12px 35px rgba(255, 78, 205, 0.5);
+  color: #fff;
+  border-color: transparent;
+}
+.chap-btn:active { transform: translateY(-2px); }
 
-  .cover img {
-    width: 100%;
-    max-width: 380px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
-  }
+/* ===== LOADING / ERROR ===== */
+.loading, .error-msg {
+  text-align: center; padding: 80px 20px;
+  font-size: 1.4em; color: var(--text-secondary);
+}
+.error-msg { color: #ff6b81; text-shadow: 0 0 12px rgba(255, 107, 129, 0.4); }
 
-  .cover img:hover { transform: scale(1.02); }
+/* ===== PETAL ANIMATION ===== */
+#petal-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+.petal {
+  position: absolute; top: -30px; font-size: 18px;
+  opacity: 0.75; animation: fall linear forwards;
+  text-shadow: 0 0 12px rgba(255, 78, 205, 0.6);
+  user-select: none;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
 
-  .info {
-    flex: 1;
-    min-width: 300px;
-  }
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .header-detail { flex-direction: column; text-align: center; align-items: center; }
+  .cover img { max-width: 100%; }
+  .info h1 { font-size: 2em; }
+  .chap-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  header h1 { font-size: 1.3em; }
+}
 
-  .info h1 {
-    font-size: 2.5em;
-    margin: 0 0 15px;
-    color: #e74c3c;
-  }
-
-  .meta p {
-    font-size: 1.1em;
-    margin: 5px 0;
-  }
-
-  .synopsis {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 25px 0;
-    line-height: 1.8;
-    border-left: 5px solid #e74c3c;
-  }
-
-  .chap-list h3 {
-    font-size: 1.6em;
-    margin: 40px 0 20px;
-    color: #333;
-    border-bottom: 3px solid #e74c3c;
-    padding-bottom: 10px;
-  }
-
-  .chap-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-    gap: 15px;
-  }
-
-  .chap-btn {
-    background: #e74c3c;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-    box-shadow: 0 6px 15px rgba(231,76,60,0.4);
-  }
-
-  .chap-btn:hover {
-    background: #c0392b;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(231,76,60,0.5);
-  }
-
-  .loading {
-    text-align: center;
-    padding: 80px;
-    font-size: 1.5em;
-    color: #e74c3c;
-  }
-
-  @media(max-width:768px){
-    .header-detail { flex-direction: column; text-align: center; align-items: center; }
-    .cover img { max-width: 100%; }
-    .info h1 { font-size: 2em; }
-  }
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  #petal-container { display: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
 
+<div id="petal-container"></div>
+
 <header>
-  <h1 id="page-title">góc nhỏ truyện tình</h1>
-  <button onclick="history.back()">← Quay lại</button>
+  <h1 id="page-title">🌸 góc nhỏ truyện tình</h1>  <button onclick="history.back()">← Quay lại</button>
 </header>
 
 <div class="container">
   <div class="detail" id="content">
-    <div class="loading">Đang tải thông tin truyện...</div>
+    <div class="loading">✨ Đang tải thông tin truyện...</div>
   </div>
 </div>
 
 <script>
+/* ===== PETAL ANIMATION ===== */
+function createPetal() {
+  const box = document.getElementById('petal-container');
+  if (!box) return;
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = "🌸";
+  const startX = Math.random() * window.innerWidth;
+  const duration = Math.random() * 3 + 4;
+  const size = Math.random() * 14 + 14;
+  petal.style.left = startX + "px";
+  petal.style.fontSize = size + "px";
+  petal.style.opacity = Math.random() * 0.5 + 0.4;
+  petal.style.animationDuration = duration + "s";
+  box.appendChild(petal);
+  setTimeout(() => petal.remove(), (duration + 0.5) * 1000);
+}
+setInterval(createPetal, 450);
+for(let i=0; i<4; i++) setTimeout(createPetal, i*180);
+
+/* ===== LOAD STORY DATA ===== */
 const urlParams = new URLSearchParams(location.search);
 const id = urlParams.get('id');
 
 if (!id) {
   document.getElementById("content").innerHTML =
-    "<h1 style='text-align:center;padding:100px'>Không tìm thấy truyện!</h1>";
+    "<h1 class='error-msg'>❌ Không tìm thấy truyện!</h1>";
 }
 
 fetch('stories.json?t=' + Date.now())
-  .then(r => r.json())
+  .then(r => {
+    if (!r.ok) throw new Error("Không thể kết nối");
+    return r.json();
+  })
   .then(data => {
     const story = data.find(s => s.id === id);
     if (!story) throw "Truyện không tồn tại";
 
-    document.getElementById("page-title").textContent = story.title + " - Coconut Manga";
+    document.getElementById("page-title").textContent = story.title + " — góc nhỏ truyện tình";
+    // Placeholder ảnh nếu không có thumbnail
+    const thumb = story.thumbnail || `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="380" height="500" viewBox="0 0 380 500"%3E%3Crect fill="%23140022" width="380" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="16" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E`;
 
     document.getElementById("content").innerHTML = `
       <div class="header-detail">
-        <div class="cover"><img src="${story.thumbnail}" alt="${story.title}"></div>
+        <div class="cover"><img src="${thumb}" alt="${story.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22500%22 viewBox=%220 0 380 500%22%3E%3Crect fill=%22%23140022%22 width=%22380%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23ff4ecd%22 dy=%22.3em%22%3ENo%20Cover%3C/text%3E%3C/svg%3E'"></div>
         <div class="info">
           <h1>${story.title}</h1>
           <div class="meta">
-            <p><strong>Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
-            <p><strong>Số chapter:</strong> ${story.chapters.length}</p>
+            <p><strong>✍️ Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
+            <p><strong>📚 Số chapter:</strong> ${story.chapters.length}</p>
           </div>
           <div class="synopsis">
-            <strong>Tóm tắt truyện:</strong><br>
-            ${story.description || "Chưa có tóm tắt. Bạn có thể thêm khi đăng truyện!"}
+            <strong>📖 Tóm tắt truyện:</strong><br><br>
+            ${story.description || "✨ Chưa có tóm tắt. Bạn có thể thêm khi đăng truyện!"}
           </div>
         </div>
       </div>
 
       <div class="chap-list">
-        <h3>Danh sách chapter (${story.chapters.length})</h3>
+        <h3>📑 Danh sách chapter (${story.chapters.length})</h3>
         <div class="chap-grid">
           ${story.chapters.map((ch, i) => `
             <div class="chap-btn" onclick="location.href='reader.html?id=${id}&chap=${i}'">
-              ${ch.name}
+              ${ch.name || 'Chapter ' + (i+1)}
             </div>
           `).join('')}
         </div>
       </div>
     `;
   })
-  .catch(() => {
+  .catch((err) => {
+    console.error(err);
     document.getElementById("content").innerHTML =
-      "<h1 style='text-align:center;padding:100px;color:#e74c3c'>Lỗi tải truyện 😢</h1>";
+      "<h1 class='error-msg'>❌ Lỗi tải truyện 😢<br><small style='font-size:0.6em;color:var(--text-muted)'>" + (err.message || err) + "</small></h1>";
   });
 </script>
 
