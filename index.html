@@ -87,24 +87,32 @@ header h1 {
   transform: scale(1.1);
   box-shadow: 0 6px 25px var(--main-glow);
 }
-
 /* ===== DROPDOWN MENU ===== */
 #nav-menu {
-  position: absolute;
-  top: 70px;
-  right: 15px;
-  width: 260px;
+  position: fixed;
+  top: 75px; /* Cách header một chút */
+  right: 20px;
+  width: min(260px, calc(100vw - 40px)); /* Responsive width */
+  max-height: calc(100vh - 90px); /* Không tràn quá màn hình */
+  overflow-y: auto; /* Scroll nếu menu quá dài */
   background: var(--card-bg);
   color: var(--text-primary);
-  border-radius: 15px;  box-shadow: 0 10px 40px rgba(255, 78, 205, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 15px 50px rgba(255, 78, 205, 0.6);
+  border: 2px solid var(--main-color);
   display: none;
   animation: fadeDown 0.25s ease;
-  border: 1px solid rgba(255, 78, 205, 0.3);
-  overflow: hidden;
+  z-index: 9999; /* ✅ Cao nhất */
+  backdrop-filter: blur(10px); /* Hiệu ứng kính mờ sang trọng */
 }
-@keyframes fadeDown {
-  from { transform: translateY(-10px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+
+/*Scrollbar cho menu nếu cần scroll*/
+#nav-menu::-webkit-scrollbar {
+  width: 6px;
+}
+#nav-menu::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
 }
 #nav-menu a {
   display: block;
