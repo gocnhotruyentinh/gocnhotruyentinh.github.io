@@ -47,8 +47,7 @@ header {
   box-shadow: 0 4px 25px rgba(255, 78, 205, 0.3);
   border-bottom: 1px solid var(--border-color);
 }
-header h1 {  font-size: 1.5em; margin: 0;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+header h1 {  font-size: 1.5em; margin: 0;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   color: var(--text-primary);
   text-shadow: 0 0 12px var(--main-glow);
 }
@@ -80,6 +79,100 @@ header button:active { transform: translateY(0); }
   overflow: hidden;
   padding: 25px;
   border: 1px solid var(--border-color);
+  margin-bottom: 30px; /* Khoảng cách với phần bình luận */
+}
+
+/* ===== HEADER DETAIL ===== */
+.header-detail {
+  display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;
+}
+.cover img {
+  width: 100%; max-width: 380px;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(255, 78, 205, 0.35Dưới đây là toàn bộ code `story.html` đã được cập nhật với **khu vực bình luận Giscus** được tích hợp hoàn chỉnh. Mình đã điền các giá trị cần thiết dựa trên repo của bạn.
+
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title id="page-title">góc nhỏ truyện tình</title>
+<link rel="icon" href=",">
+<style>
+/* ===== THEME VARIABLES ===== */
+:root {
+  --main-color: #ff4ecd;
+  --main-glow: rgba(255, 78, 205, 0.6);
+  --bg-dark: #0a0014;
+  --bg-gradient: linear-gradient(135deg, #0a0014, #1a0033);
+  --card-bg: #140022;
+  --card-hover: #1f0033;
+  --text-primary: #ffccff;
+  --text-secondary: #e0b0ff;
+  --text-muted: #b39ddb;
+  --border-color: rgba(255, 78, 205, 0.2);
+}
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #ff7ad9; }
+
+/* ===== HEADER ===== */
+header {
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: rgba(20, 0, 34, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 4px 25px rgba(255, 78, 205, 0.3);
+  border-bottom: 1px solid var(--border-color);
+}
+header h1 {  font-size: 1.5em; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: var(--text-primary);
+  text-shadow: 0 0 12px var(--main-glow);
+}
+header button {  background: linear-gradient(45deg, var(--main-color), #7a00ff);
+  border: none; color: #fff;
+  padding: 10px 20px; border-radius: 25px;
+  font-size: 1em; cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 78, 205, 0.4);
+}
+header button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.6);
+}
+header button:active { transform: translateY(0); }
+
+/* ===== CONTAINER & DETAIL ===== */
+.container {
+  max-width: 1100px;
+  margin: 100px auto 40px;
+  padding: 0 20px;
+}
+.detail {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(255, 78, 205, 0.25);
+  overflow: hidden;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 30px; /* Khoảng cách với phần bình luận */
 }
 
 /* ===== HEADER DETAIL ===== */
@@ -101,8 +194,7 @@ header button:active { transform: translateY(0); }
 .info h1 {
   font-size: 2.5em; margin: 0 0 18px;
   color: var(--text-primary);
-  text-shadow: 0 0 15px rgba(255, 204, 255, 0.4);
-  line-height: 1.3;
+  text-shadow: 0 0 15px rgba(255, 204, 255, 0.4);  line-height: 1.3;
 }
 .meta p {
   font-size: 1.1em; margin: 8px 0; color: var(--text-secondary);
@@ -151,6 +243,30 @@ header button:active { transform: translateY(0); }
 }
 .chap-btn:active { transform: translateY(-2px); }
 
+/* ===== COMMENT SECTION ===== */.comment-section {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 15px 45px rgba(255, 78, 205, 0.15);
+  margin-top: 20px;
+}
+.comment-section h3 {
+  font-size: 1.5em;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.comment-section h3::before {
+  content: '💬';
+  font-size: 1.2em;
+}
+
 /* ===== LOADING / ERROR ===== */
 .loading, .error-msg {
   text-align: center; padding: 80px 20px;
@@ -176,10 +292,12 @@ header button:active { transform: translateY(0); }
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   .header-detail { flex-direction: column; text-align: center; align-items: center; }
-  .cover img { max-width: 100%; }
-  .info h1 { font-size: 2em; }
+  .cover img { max-width: 100%; }  .info h1 { font-size: 2em; }
   .chap-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   header h1 { font-size: 1.3em; }
+  .comment-section {
+    padding: 20px;
+  }
 }
 
 /* ===== REDUCED MOTION ===== */
@@ -198,8 +316,17 @@ header button:active { transform: translateY(0); }
 </header>
 
 <div class="container">
+  <!-- Story Detail -->
   <div class="detail" id="content">
     <div class="loading">✨ Đang tải thông tin truyện...</div>
+  </div>
+
+  <!-- Comment Section -->
+  <div class="comment-section">
+    <h3>Bình luận về truyện</h3>
+    <div id="giscus-container">
+      <div class="loading" style="padding: 20px; font-size: 1em;">Đang tải bình luận...</div>
+    </div>
   </div>
 </div>
 
@@ -214,8 +341,7 @@ function createPetal() {
   const startX = Math.random() * window.innerWidth;
   const duration = Math.random() * 3 + 4;
   const size = Math.random() * 14 + 14;
-  petal.style.left = startX + "px";
-  petal.style.fontSize = size + "px";
+  petal.style.left = startX + "px";  petal.style.fontSize = size + "px";
   petal.style.opacity = Math.random() * 0.5 + 0.4;
   petal.style.animationDuration = duration + "s";
   box.appendChild(petal);
@@ -231,54 +357,79 @@ const id = urlParams.get('id');
 if (!id) {
   document.getElementById("content").innerHTML =
     "<h1 class='error-msg'>❌ Không tìm thấy truyện!</h1>";
-}
+  document.querySelector(".comment-section").style.display = "none";
+} else {
+  fetch('stories.json?t=' + Date.now())
+    .then(r => {
+      if (!r.ok) throw new Error("Không thể kết nối");
+      return r.json();
+    })
+    .then(data => {
+      const story = data.find(s => s.id === id);
+      if (!story) throw "Truyện không tồn tại";
 
-fetch('stories.json?t=' + Date.now())
-  .then(r => {
-    if (!r.ok) throw new Error("Không thể kết nối");
-    return r.json();
-  })
-  .then(data => {
-    const story = data.find(s => s.id === id);
-    if (!story) throw "Truyện không tồn tại";
+      document.getElementById("page-title").textContent = story.title + " — góc nhỏ truyện tình";
+      // Placeholder ảnh nếu không có thumbnail
+      const thumb = story.thumbnail || `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="380" height="500" viewBox="0 0 380 500"%3E%3Crect fill="%23140022" width="380" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="16" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E`;
 
-    document.getElementById("page-title").textContent = story.title + " — góc nhỏ truyện tình";
-    // Placeholder ảnh nếu không có thumbnail
-    const thumb = story.thumbnail || `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="380" height="500" viewBox="0 0 380 500"%3E%3Crect fill="%23140022" width="380" height="500"/%3E%3Ctext x="50%25" y="50%25" font-size="16" text-anchor="middle" fill="%23ff4ecd" dy=".3em"%3ENo%20Cover%3C/text%3E%3C/svg%3E`;
-
-    document.getElementById("content").innerHTML = `
-      <div class="header-detail">
-        <div class="cover"><img src="${thumb}" alt="${story.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22500%22 viewBox=%220 0 380 500%22%3E%3Crect fill=%22%23140022%22 width=%22380%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23ff4ecd%22 dy=%22.3em%22%3ENo%20Cover%3C/text%3E%3C/svg%3E'"></div>
-        <div class="info">
-          <h1>${story.title}</h1>
-          <div class="meta">
-            <p><strong>✍️ Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
-            <p><strong>📚 Số chapter:</strong> ${story.chapters.length}</p>
-          </div>
-          <div class="synopsis">
-            <strong>📖 Tóm tắt truyện:</strong><br><br>
-            ${story.description || "✨ Chưa có tóm tắt. Bạn có thể thêm khi đăng truyện!"}
-          </div>
-        </div>
-      </div>
-
-      <div class="chap-list">
-        <h3>📑 Danh sách chapter (${story.chapters.length})</h3>
-        <div class="chap-grid">
-          ${story.chapters.map((ch, i) => `
-            <div class="chap-btn" onclick="location.href='reader.html?id=${id}&chap=${i}'">
-              ${ch.name || 'Chapter ' + (i+1)}
+      document.getElementById("content").innerHTML = `
+        <div class="header-detail">
+          <div class="cover"><img src="${thumb}" alt="${story.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22500%22 viewBox=%220 0 380 500%22%3E%3Crect fill=%22%23140022%22 width=%22380%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23ff4ecd%22 dy=%22.3em%22%3ENo%20Cover%3C/text%3E%3C/svg%3E'"></div>
+          <div class="info">
+            <h1>${story.title}</h1>
+            <div class="meta">
+              <p><strong>✍️ Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
+              <p><strong>📚 Số chapter:</strong> ${story.chapters.length}</p>
             </div>
-          `).join('')}
+            <div class="synopsis">
+              <strong>📖 Tóm tắt truyện:</strong><br><br>
+              ${story.description || "✨ Chưa có tóm tắt. Bạn có thể thêm khi đăng truyện!"}
+            </div>
+          </div>
         </div>
-      </div>
-    `;
-  })
-  .catch((err) => {
-    console.error(err);
-    document.getElementById("content").innerHTML =
-      "<h1 class='error-msg'>❌ Lỗi tải truyện 😢<br><small style='font-size:0.6em;color:var(--text-muted)'>" + (err.message || err) + "</small></h1>";
-  });
+
+        <div class="chap-list">
+          <h3>📑 Danh sách chapter (${story.chapters.length})</h3>
+          <div class="chap-grid">            ${story.chapters.map((ch, i) => `
+              <div class="chap-btn" onclick="location.href='reader.html?id=${id}&chap=${i}'">
+                ${ch.name || 'Chapter ' + (i+1)}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      // --- GISCUS COMMENT SYSTEM ---
+      const giscusContainer = document.getElementById('giscus-container');
+      giscusContainer.innerHTML = ''; // Xóa loading
+
+      const giscusScript = document.createElement('script');
+      giscusScript.src = "https://giscus.app/client.js";
+      giscusScript.async = true;
+      giscusScript.crossOrigin = "anonymous";
+      giscusScript.setAttribute("data-repo", "gocnhotruyentinh/gocnhotruyentinh.github.io"); // ✅ Đã điền
+      giscusScript.setAttribute("data-repo-id", "R_kgDOMqZw0Q"); // ✅ Đã điền
+      giscusScript.setAttribute("data-category", "General"); // ✅ Đã điền
+      giscusScript.setAttribute("data-category-id", "DIC_kwDOMqZw0c4CgZfU"); // ✅ Đã điền
+      giscusScript.setAttribute("data-mapping", "pathname"); // Dùng pathname để mỗi trang có 1 thread riêng
+      giscusScript.setAttribute("data-strict", "0");
+      giscusScript.setAttribute("data-reactions-enabled", "1");
+      giscusScript.setAttribute("data-emit-metadata", "0");
+      giscusScript.setAttribute("data-input-position", "bottom");
+      giscusScript.setAttribute("data-theme", "dark_dimmed"); // Theme tối phù hợp
+      giscusScript.setAttribute("data-lang", "vi");
+      giscusScript.setAttribute("data-loading", "lazy");
+
+      giscusContainer.appendChild(giscusScript);
+
+    })
+    .catch((err) => {
+      console.error(err);
+      document.getElementById("content").innerHTML =
+        "<h1 class='error-msg'>❌ Lỗi tải truyện 😢<br><small style='font-size:0.6em;color:var(--text-muted)'>" + (err.message || err) + "</small></h1>";
+      document.querySelector(".comment-section").style.display = "none";
+    });
+}
 </script>
 
 </body>
