@@ -47,105 +47,11 @@ header {
   box-shadow: 0 4px 25px rgba(255, 78, 205, 0.3);
   border-bottom: 1px solid var(--border-color);
 }
-header h1 {  font-size: 1.5em; margin: 0;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  color: var(--text-primary);
+header h1 {  font-size: 1.5em; margin: 0;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;  color: var(--text-primary);
   text-shadow: 0 0 12px var(--main-glow);
 }
 header button {
   background: linear-gradient(45deg, var(--main-color), #7a00ff);
-  border: none; color: #fff;
-  padding: 10px 20px; border-radius: 25px;
-  font-size: 1em; cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  box-shadow: 0 4px 15px rgba(255, 78, 205, 0.4);
-}
-header button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 78, 205, 0.6);
-}
-header button:active { transform: translateY(0); }
-
-/* ===== CONTAINER & DETAIL ===== */
-.container {
-  max-width: 1100px;
-  margin: 100px auto 40px;
-  padding: 0 20px;
-}
-.detail {
-  background: var(--card-bg);
-  border-radius: 20px;
-  box-shadow: 0 15px 45px rgba(255, 78, 205, 0.25);
-  overflow: hidden;
-  padding: 25px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 30px; /* Khoảng cách với phần bình luận */
-}
-
-/* ===== HEADER DETAIL ===== */
-.header-detail {
-  display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;
-}
-.cover img {
-  width: 100%; max-width: 380px;
-  border-radius: 16px;
-  box-shadow: 0 12px 35px rgba(255, 78, 205, 0.35Dưới đây là toàn bộ code `story.html` đã được cập nhật với **khu vực bình luận Giscus** được tích hợp hoàn chỉnh. Mình đã điền các giá trị cần thiết dựa trên repo của bạn.
-
-```html
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title id="page-title">góc nhỏ truyện tình</title>
-<link rel="icon" href=",">
-<style>
-/* ===== THEME VARIABLES ===== */
-:root {
-  --main-color: #ff4ecd;
-  --main-glow: rgba(255, 78, 205, 0.6);
-  --bg-dark: #0a0014;
-  --bg-gradient: linear-gradient(135deg, #0a0014, #1a0033);
-  --card-bg: #140022;
-  --card-hover: #1f0033;
-  --text-primary: #ffccff;
-  --text-secondary: #e0b0ff;
-  --text-muted: #b39ddb;
-  --border-color: rgba(255, 78, 205, 0.2);
-}
-
-/* ===== BASE ===== */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-gradient);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background 0.3s ease;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #ff7ad9; }
-
-/* ===== HEADER ===== */
-header {
-  position: fixed; top: 0; left: 0; width: 100%;
-  background: rgba(20, 0, 34, 0.95);
-  backdrop-filter: blur(12px);
-  z-index: 1000;
-  padding: 15px 20px;
-  display: flex; justify-content: space-between; align-items: center;
-  box-shadow: 0 4px 25px rgba(255, 78, 205, 0.3);
-  border-bottom: 1px solid var(--border-color);
-}
-header h1 {  font-size: 1.5em; margin: 0;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  color: var(--text-primary);
-  text-shadow: 0 0 12px var(--main-glow);
-}
-header button {  background: linear-gradient(45deg, var(--main-color), #7a00ff);
   border: none; color: #fff;
   padding: 10px 20px; border-radius: 25px;
   font-size: 1em; cursor: pointer;
@@ -189,8 +95,8 @@ header button:active { transform: translateY(0); }
 }
 .cover img:hover {
   transform: scale(1.03);
-  box-shadow: 0 18px 50px rgba(255, 78, 205, 0.5);}
-.info { flex: 1; min-width: 300px; }
+  box-shadow: 0 18px 50px rgba(255, 78, 205, 0.5);
+}.info { flex: 1; min-width: 300px; }
 .info h1 {
   font-size: 2.5em; margin: 0 0 18px;
   color: var(--text-primary);
@@ -239,11 +145,11 @@ header button:active { transform: translateY(0); }
   background: linear-gradient(135deg, var(--main-color), #7a00ff);
   transform: translateY(-6px);  box-shadow: 0 12px 35px rgba(255, 78, 205, 0.5);
   color: #fff;
-  border-color: transparent;
-}
+  border-color: transparent;}
 .chap-btn:active { transform: translateY(-2px); }
 
-/* ===== COMMENT SECTION ===== */.comment-section {
+/* ===== COMMENT SECTION ===== */
+.comment-section {
   background: var(--card-bg);
   border-radius: 20px;
   padding: 25px;
@@ -278,10 +184,17 @@ header button:active { transform: translateY(0); }
 #petal-container {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 1; overflow: hidden;
+  /* ✅ FIX: Ngăn không cho cuộn theo trang */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Sử dụng viewport height thay vì 100% */
+  overflow: hidden;
+  pointer-events: none;
 }
 .petal {
-  position: absolute; top: -30px; font-size: 18px;
-  opacity: 0.75; animation: fall linear forwards;
+  position: absolute; top: -30px; font-size: 18px;  opacity: 0.75; animation: fall linear forwards;
   text-shadow: 0 0 12px rgba(255, 78, 205, 0.6);
   user-select: none;
 }
@@ -330,8 +243,7 @@ header button:active { transform: translateY(0); }
   </div>
 </div>
 
-<script>
-/* ===== PETAL ANIMATION ===== */
+<script>/* ===== PETAL ANIMATION (FIXED) ===== */
 function createPetal() {
   const box = document.getElementById('petal-container');
   if (!box) return;
@@ -341,9 +253,12 @@ function createPetal() {
   const startX = Math.random() * window.innerWidth;
   const duration = Math.random() * 3 + 4;
   const size = Math.random() * 14 + 14;
-  petal.style.left = startX + "px";  petal.style.fontSize = size + "px";
+  petal.style.left = startX + "px";
+  petal.style.fontSize = size + "px";
   petal.style.opacity = Math.random() * 0.5 + 0.4;
   petal.style.animationDuration = duration + "s";
+  // ✅ Thêm zIndex để đảm bảo luôn trên cùng
+  petal.style.zIndex = "9999";
   box.appendChild(petal);
   setTimeout(() => petal.remove(), (duration + 0.5) * 1000);
 }
@@ -377,8 +292,7 @@ if (!id) {
           <div class="cover"><img src="${thumb}" alt="${story.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22380%22 height=%22500%22 viewBox=%220 0 380 500%22%3E%3Crect fill=%22%23140022%22 width=%22380%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23ff4ecd%22 dy=%22.3em%22%3ENo%20Cover%3C/text%3E%3C/svg%3E'"></div>
           <div class="info">
             <h1>${story.title}</h1>
-            <div class="meta">
-              <p><strong>✍️ Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
+            <div class="meta">              <p><strong>✍️ Tác giả:</strong> ${story.author || 'Đang cập nhật'}</p>
               <p><strong>📚 Số chapter:</strong> ${story.chapters.length}</p>
             </div>
             <div class="synopsis">
@@ -399,7 +313,7 @@ if (!id) {
         </div>
       `;
 
-      // --- GISCUS COMMENT SYSTEM ---
+      // --- GISCUS COMMENT SYSTEM (UPDATED) ---
       const giscusContainer = document.getElementById('giscus-container');
       giscusContainer.innerHTML = ''; // Xóa loading
 
@@ -407,18 +321,17 @@ if (!id) {
       giscusScript.src = "https://giscus.app/client.js";
       giscusScript.async = true;
       giscusScript.crossOrigin = "anonymous";
-      giscusScript.setAttribute("data-repo", "gocnhotruyentinh/gocnhotruyentinh.github.io"); // ✅ Đã điền
-      giscusScript.setAttribute("data-repo-id", "R_kgDOMqZw0Q"); // ✅ Đã điền
-      giscusScript.setAttribute("data-category", "General"); // ✅ Đã điền
-      giscusScript.setAttribute("data-category-id", "DIC_kwDOMqZw0c4CgZfU"); // ✅ Đã điền
-      giscusScript.setAttribute("data-mapping", "pathname"); // Dùng pathname để mỗi trang có 1 thread riêng
-      giscusScript.setAttribute("data-strict", "0");
+      // ✅ CẬP NHẬT CÁC GIÁ TRỊ MỚI CHO GISCUS
+      giscusScript.setAttribute("data-repo", "gocnhotruyentinh/gocnhotruyentinh.github.io");
+      giscusScript.setAttribute("data-repo-id", "R_kgDOR-NFfw");
+      giscusScript.setAttribute("data-category-id", "DIC_kwDOR-NFf84C6wjB");
+      giscusScript.setAttribute("data-mapping", "pathname");
+      giscusScript.setAttribute("data-strict", "1");
       giscusScript.setAttribute("data-reactions-enabled", "1");
       giscusScript.setAttribute("data-emit-metadata", "0");
-      giscusScript.setAttribute("data-input-position", "bottom");
-      giscusScript.setAttribute("data-theme", "dark_dimmed"); // Theme tối phù hợp
+      giscusScript.setAttribute("data-input-position", "top");
+      giscusScript.setAttribute("data-theme", "preferred_color_scheme");
       giscusScript.setAttribute("data-lang", "vi");
-      giscusScript.setAttribute("data-loading", "lazy");
 
       giscusContainer.appendChild(giscusScript);
 
@@ -428,8 +341,7 @@ if (!id) {
       document.getElementById("content").innerHTML =
         "<h1 class='error-msg'>❌ Lỗi tải truyện 😢<br><small style='font-size:0.6em;color:var(--text-muted)'>" + (err.message || err) + "</small></h1>";
       document.querySelector(".comment-section").style.display = "none";
-    });
-}
+    });}
 </script>
 
 </body>
