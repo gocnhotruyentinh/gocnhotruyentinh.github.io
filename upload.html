@@ -31,7 +31,7 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   transition: background 0.3s ease;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* Scrollbar */
@@ -47,14 +47,14 @@ body {
   padding: 20px; 
   width: 100%;
   box-sizing: border-box;
-}
-.card {
+}.card {
   background: var(--card-bg);
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(255, 78, 205, 0.25);
   overflow: hidden;
   border: 1px solid var(--border-color);
-  width: 100%;  box-sizing: border-box;
+  width: 100%;  
+  box-sizing: border-box;
 }
 
 /* ===== HEADER & TABS ===== */
@@ -96,13 +96,13 @@ header.card-head .small { color: var(--text-muted); }
   transition: all 0.25s ease;
   min-width: 120px;
 }
-.tab-btn:hover { background: var(--card-hover); color: var(--text-primary); }
-.tab-btn.active {
+.tab-btn:hover { background: var(--card-hover); color: var(--text-primary); }.tab-btn.active {
   color: var(--main-color);
   border-bottom-color: var(--main-color);
   background: var(--card-bg);
   box-shadow: inset 0 -2px 0 var(--main-color);
 }
+
 /* ===== CARD BODY ===== */
 .card-body {
   padding: 20px 22px;
@@ -145,14 +145,14 @@ textarea { min-height: 90px; resize: vertical; }
   gap: 12px; 
   flex-wrap: wrap;
 }
-.row > div {
-  box-sizing: border-box;
+.row > div {  box-sizing: border-box;
 }
 .small { font-size: 13px; color: var(--text-muted); }
 .hint { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
 code {
   background: rgba(255, 78, 205, 0.15);
-  padding: 2px 6px;   border-radius: 4px;
+  padding: 2px 6px;   
+  border-radius: 4px;
   color: var(--main-color); 
   font-size: 12px;
   word-break: break-word;
@@ -194,14 +194,14 @@ code {
   padding: 10px;
   cursor: pointer; 
   border-bottom: 1px solid rgba(255,204,255,0.08);
-  transition: background 0.2s; 
-  align-items: center;
+  transition: background 0.2s;   align-items: center;
 }
 .story-option:hover, .story-option.selected {
   background: var(--card-hover);
   border-left: 3px solid var(--main-color);
 }
-.story-option img {  width: 40px; 
+.story-option img {  
+  width: 40px; 
   height: 56px; 
   object-fit: cover;
   border-radius: 6px; 
@@ -243,14 +243,14 @@ code {
   transform: translateX(4px);
 }
 
-/* ===== DRAG & DROP ===== */
-.drop {
+/* ===== DRAG & DROP ===== */.drop {
   border: 2px dashed var(--border-color);
   background: linear-gradient(180deg, rgba(20,0,34,0.8), rgba(30,0,50,0.8));
   padding: 20px; 
   border-radius: 12px; 
   text-align: center;
-  cursor: pointer;   color: var(--text-secondary);
+  cursor: pointer;   
+  color: var(--text-secondary);
   transition: all 0.25s ease;
 }
 .drop:hover, .drop.drag {
@@ -292,14 +292,14 @@ code {
 /* ===== BUTTONS ===== */
 button.primary {
   background: linear-gradient(45deg, var(--main-color), #7a00ff);
-  color: #fff; 
-  padding: 12px 20px; 
+  color: #fff;   padding: 12px 20px; 
   border-radius: 12px;
   border: 0; 
   font-weight: 700; 
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(255, 78, 205, 0.4);  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(255, 78, 205, 0.4);  
+  white-space: nowrap;
 }
 button.primary:hover {
   transform: translateY(-2px);
@@ -341,14 +341,14 @@ button.ghost {
   background: transparent;
   border: 1px solid var(--danger);
   color: var(--danger);
-  padding: 6px 14px; 
-  border-radius: 8px;
+  padding: 6px 14px;   border-radius: 8px;
   cursor: pointer; 
   font-size: 13px;
   transition: all 0.25s ease;
 }
 button.ghost:hover {
-  background: rgba(255, 82, 82, 0.15);  color: #fff;
+  background: rgba(255, 82, 82, 0.15);  
+  color: #fff;
 }
 
 button.toggle-btn, button.refresh-btn {
@@ -390,14 +390,14 @@ button.refresh-btn:hover {
   height: 180px; 
   overflow-y: auto;
   background: rgba(15, 23, 32, 0.9);
-  color: #d1d5db; 
-  padding: 12px;
+  color: #d1d5db;   padding: 12px;
   border-radius: 10px;
   font-family: 'Consolas', monospace; 
   font-size: 13px;
   border: 1px solid var(--border-color);
   word-break: break-word;
 }
+
 /* ===== MANAGE TAB ===== */
 .story-card {
   display: flex; 
@@ -439,14 +439,14 @@ button.refresh-btn:hover {
   border-radius: 20px;
   font-size: 12px; 
   display: flex; 
-  align-items: center; 
-  gap: 6px;
+  align-items: center;   gap: 6px;
   color: var(--text-secondary);
   border: 1px solid var(--border-color);
 }
 .chap-tag button {
   background: none; 
-  border: 0;   color: var(--danger);
+  border: 0;   
+  color: var(--danger);
   cursor: pointer; 
   font-weight: 700; 
   padding: 0 3px;
@@ -488,14 +488,14 @@ button.refresh-btn:hover {
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width: 768px) {
-  .card-body { 
+@media(max-width: 768px) {  .card-body { 
     grid-template-columns: 1fr; 
     padding: 15px;
     gap: 15px;
   }
   .right { 
-    border-left: 0;     padding-left: 0; 
+    border-left: 0;     
+    padding-left: 0; 
     padding-top: 15px; 
     border-top: 1px solid var(--border-color);
   }
@@ -522,7 +522,7 @@ button.refresh-btn:hover {
     width: 100% !important;
   }
   input[type="text"], input[type="number"], textarea, .urls {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
   }
   header.card-head h1 {
     font-size: 16px;
@@ -537,14 +537,14 @@ button.refresh-btn:hover {
 }
 
 @media(max-width: 480px) {
-  .wrap {
-    padding: 10px;
+  .wrap {    padding: 10px;
     margin: 15px auto;
   }
   .card {
     border-radius: 12px;
   }
-  header.card-head {    padding: 15px;
+  header.card-head {    
+    padding: 15px;
   }
   .card-body {
     padding: 12px;
@@ -586,8 +586,7 @@ button.refresh-btn:hover {
 <div class="wrap">
   <div class="card">
     <header class="card-head">
-      <h1>📚 Quản lý Truyện — góc nhỏ truyện tình</h1>
-      <div class="small">🌸</div>
+      <h1>📚 Quản lý Truyện — góc nhỏ truyện tình</h1>      <div class="small">🌸</div>
     </header>
     <!-- Tabs -->
     <div class="tabs">
@@ -617,8 +616,8 @@ button.refresh-btn:hover {
         </div>
 
         <!-- FORM FIELDS -->
-        <label>Tên truyện <span class="small">(tự động khi chọn truyện)</span></label>
-        <input id="title" type="text" placeholder="nhập Tên truyện" disabled>
+        <label>Tên truyện <span class="small">(có thể sửa sau khi chọn)</span></label>
+        <input id="title" type="text" placeholder="nhập Tên truyện">
         
         <div class="row" style="margin-top:10px">
           <div style="flex:1">
@@ -632,12 +631,11 @@ button.refresh-btn:hover {
           </div>
         </div>
 
-        <label>Tác giả <span class="small">(tự động khi chọn truyện)</span></label>
-        <input id="author" type="text" placeholder="Tác giả (không bắt buộc)" disabled>
+        <label>Tác giả <span class="small">(có thể sửa sau khi chọn)</span></label>
+        <input id="author" type="text" placeholder="Tác giả (không bắt buộc)">
 
         <label>Tóm tắt (mô tả) <span class="small">(chỉ sửa khi cần)</span></label>
         <textarea id="description" placeholder="Mô tả / tóm tắt ngắn"></textarea>
-
         <hr style="margin:16px 0;border:none;border-top:1px solid var(--border-color)">
         <label>Ảnh bìa <span class="small">(chỉ cần khi thêm truyện mới)</span></label>
         <input id="cover" type="file" accept="image/*">
@@ -686,8 +684,8 @@ button.refresh-btn:hover {
           <div style="font-weight:600;color:var(--main-color);margin-bottom:8px">✅ Đã chọn:</div>
           <div id="selected-story-name" style="font-size:14px;color:var(--text-primary)"></div>
           <div id="selected-story-chaps" style="font-size:12px;color:var(--text-muted);margin-top:4px"></div>
-        </div>
-      </div>    </div>
+        </div>      </div>    
+    </div>
 
     <!-- Manage Tab -->
     <div id="tab-manage" class="card-body hidden full-width">
@@ -735,8 +733,8 @@ const RAW_BASE = "https://raw.githubusercontent.com/gocnhotruyentinh/gocnhotruye
 const API_BASE = "https://api.github.com/repos/gocnhotruyentinh/gocnhotruyentinh.github.io/contents";
 
 /* ===== ELEMENTS ===== */
-const fileInput = document.getElementById('file-input');
-const dropZone = document.getElementById('dropZone');const urlListEl = document.getElementById('url-list');
+const fileInput = document.getElementById('file-input');const dropZone = document.getElementById('dropZone');
+const urlListEl = document.getElementById('url-list');
 const coverInput = document.getElementById('cover');
 const coverPreview = document.getElementById('cover-preview');
 const filesPreview = document.getElementById('files-preview');
@@ -784,8 +782,7 @@ function logManageMsg(...args){
 function renderStorySelector(stories, filter = '') {
   const filtered = stories.filter(s => 
     s.title?.toLowerCase().includes(filter.toLowerCase()) || 
-    s.id?.toLowerCase().includes(filter.toLowerCase())
-  );  
+    s.id?.toLowerCase().includes(filter.toLowerCase())  );  
   if (filtered.length === 0) {
     storyListEl.innerHTML = '<div class="small" style="text-align:center;padding:15px;color:var(--text-muted)">📭 Không tìm thấy truyện</div>';
     return;
@@ -834,8 +831,7 @@ async function loadStorySelector(retryCount = 0) {
       return;
     }
     
-    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);    
-    storiesData = await res.json();
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);        storiesData = await res.json();
     renderStorySelector(storiesData);
     log('✅ Đã tải ' + storiesData.length + ' truyện vào danh sách.');
     
@@ -870,8 +866,11 @@ function selectNewStory() {
   document.getElementById('id').value = '';
   document.getElementById('author').value = '';
   document.getElementById('description').value = '';
+  // Đảm bảo các ô input luôn mở khóa
   document.getElementById('title').disabled = false;
   document.getElementById('author').disabled = false;
+  document.getElementById('id').disabled = false;
+  
   coverPreview.src = '';
   selectedStoryInfo.classList.add('hidden');
   document.querySelectorAll('.story-option').forEach(el => el.classList.remove('selected'));
@@ -881,10 +880,13 @@ function selectNewStory() {
 function selectExistingStory(story) {
   selectedStory = story;
   document.getElementById('title').value = story.title || '';
-  document.getElementById('id').value = story.id || '';
-  document.getElementById('author').value = story.author || '';
-  document.getElementById('description').value = story.description || '';  document.getElementById('title').disabled = true;
-  document.getElementById('author').disabled = true;
+  document.getElementById('id').value = story.id || '';  document.getElementById('author').value = story.author || '';
+  document.getElementById('description').value = story.description || '';  
+  
+  // ✅ BỎ DISABLED → Cho phép người dùng sửa tên, ID, tác giả
+  document.getElementById('title').disabled = false;
+  document.getElementById('author').disabled = false;
+  document.getElementById('id').disabled = false;
   
   if (story.thumbnail) {
     coverPreview.src = story.thumbnail;
@@ -893,12 +895,12 @@ function selectExistingStory(story) {
   }
   
   selectedStoryName.textContent = `📖 ${story.title || story.id}`;
-  selectedStoryChaps.textContent = `📚 ${story.chapters?.length || 0} chapter hiện có • ID: ${story.id}`;
+  selectedStoryChaps.textContent = `📚 ${story.chapters?.length || 0} chapter hiện có • ID gốc: ${story.id}`;
   selectedStoryInfo.classList.remove('hidden');
   
   document.querySelectorAll('.story-option').forEach(el => el.classList.remove('selected'));
   event?.currentTarget?.classList?.add('selected');
-  log('✅ Đã chọn truyện: ' + story.title + ' (ID: ' + story.id + ')');
+  log('✅ Đã chọn truyện: ' + story.title + ' (ID: ' + story.id + ') - Có thể chỉnh sửa thông tin');
 }
 
 storySearchEl?.addEventListener('input', (e) => {
@@ -927,12 +929,12 @@ document.getElementById('btn-clear').addEventListener('click', ()=>{
   log('✨ Đã xóa lựa chọn.'); barEl.style.width='0%';
 });
 
-function renderFilesPreview(){
-  const files = Array.from(fileInput.files || []);
+function renderFilesPreview(){  const files = Array.from(fileInput.files || []);
   if(!files.length){ filesPreview.innerHTML='<div class="small" style="text-align:center;color:var(--text-muted)">Chưa chọn ảnh.</div>'; return; }
   filesPreview.innerHTML='';
   files.slice(0,200).forEach((f,i)=>{
-    const el=document.createElement('div');    el.style.padding='8px 6px'; el.style.borderBottom='1px solid rgba(255,204,255,0.08)'; el.style.fontSize='13px';
+    const el=document.createElement('div');    
+    el.style.padding='8px 6px'; el.style.borderBottom='1px solid rgba(255,204,255,0.08)'; el.style.fontSize='13px';
     el.style.color='var(--text-secondary)';
     el.innerText = `${i+1}. ${f.name} — ${Math.round(f.size/1024)} KB`;
     filesPreview.appendChild(el);
@@ -976,12 +978,12 @@ async function deleteFile(path, sha, token, message){
   });
   const text = await res.text(); let json=null;
   try{ json=JSON.parse(text); }catch(e){ json={raw:text} }
-  if(!res.ok) throw { status:res.status, body:json };
-  return true;
+  if(!res.ok) throw { status:res.status, body:json };  return true;
 }
 async function fetchImageAsBase64(url){
   const res = await fetch(url, { mode:'cors' });
-  if(!res.ok) throw { message:'Fetch image failed', status:res.status, url };  const blob = await res.blob();
+  if(!res.ok) throw { message:'Fetch image failed', status:res.status, url };  
+  const blob = await res.blob();
   const b64 = await new Promise((resolve,reject)=>{
     const fr=new FileReader();
     fr.onload=()=>resolve(fr.result.split(',')[1]);
@@ -994,7 +996,7 @@ async function fetchImageAsBase64(url){
   return { base64:b64, ext };
 }
 
-/* ===== UPLOAD HANDLER ===== */
+/* ===== UPLOAD HANDLER (FIXED LOGIC) ===== */
 document.getElementById('btn-upload').addEventListener('click', async ()=>{
   try{
     const token = prompt('🔐 Nhập GitHub token (ghp_...):');
@@ -1018,37 +1020,100 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
     }catch(e){ log('⚠️ Không lấy được stories.json, tạo mới nếu cần.', e); stories=[]; storiesSha=null; }
     barEl.style.width='10%';
 
-    let story = stories.find(s=>s.id===id);
-    const isNew = !story;
-    
-    if(isNew && !title){ if(!confirm('⚠️ Truyện mới chưa nhập Title. Tiếp tục?')) return; }
+    // ===== LOGIC QUAN TRỌNG: XÁC ĐỊNH TRUYỆN CẦN CẬP NHẬT =====
+    let storyToUpdate = null;
+    let isNewStoryMode = false;
 
-    let coverUrl='';
-    if(isNew){
-      const coverFile = coverInput.files[0];
-      if(coverFile){
-        log('✨ Upload cover...'); barEl.style.width='18%';
-        const coverB64 = await new Promise((resolve,reject)=>{
-          const fr=new FileReader();
-          fr.onload=()=>resolve(fr.result.split(',')[1]);          fr.onerror=()=>reject('FileReader error');
-          fr.readAsDataURL(coverFile);
-        });
-        const ext = (coverFile.name.split('.').pop()||'jpg').split('?')[0];
-        const coverPath = `images/${id}/chap-0/cover.${ext}`;
-        try{
-          const uploaded = await putFile(coverPath, coverB64, token, `Upload cover ${id}`);
-          coverUrl = uploaded || `${RAW_BASE}/${coverPath}`;
-          log('✅ Cover uploaded ->', coverUrl);
-        }catch(err){ log('❌ Upload cover lỗi:', err); throw `Upload cover failed: ${JSON.stringify(err)}`; }
+    // 1. Nếu người dùng ĐÃ CHỌN truyện từ danh sách (selectedStory tồn tại)
+    if (selectedStory) {
+      // Tìm truyện đó trong mảng stories dựa trên ID GỐC của nó
+      storyToUpdate = stories.find(s => s.id === selectedStory.id);      
+      if (!storyToUpdate) {
+        alert('❌ Lỗi: Truyện bạn chọn không còn tồn tại trên server. Vui lòng tải lại trang.');
+        loadStorySelector();
+        return;
       }
+
+      // ✅ CẬP NHẬT THÔNG TIN MỚI VÀO TRUYỆN ĐÃ CHỌN
+      storyToUpdate.title = title || storyToUpdate.title;
+      storyToUpdate.author = author || storyToUpdate.author;
+      storyToUpdate.description = description || storyToUpdate.description;
+      
+      // ⚠️ XỬ LÝ ĐỔI ID: Nếu người dùng sửa ID trong ô input
+      if (id && id !== storyToUpdate.id) {
+         if(confirm(`⚠️ Bạn đang đổi ID truyện từ "${storyToUpdate.id}" thành "${id}".\nThư mục ảnh sẽ được lưu theo ID mới.\nTiếp tục?`)) {
+             storyToUpdate.id = id; // Cập nhật ID mới cho đối tượng truyện
+         } else {
+             // Nếu hủy, giữ nguyên ID cũ và reset ô input
+             document.getElementById('id').value = storyToUpdate.id;
+         }
+      }
+
+    } 
+    // 2. Nếu người dùng KHÔNG chọn truyện nào (chế độ thêm mới hoàn toàn)
+    else {
+      if(!title){ if(!confirm('⚠️ Truyện mới chưa nhập Title. Tiếp tục?')) return; }
+      
+      storyToUpdate = stories.find(s => s.id === id);
+      
+      if (storyToUpdate) {
+        // Trùng ID với truyện đã có -> Hỏi xem có muốn gộp/chồng lên không?
+        if(!confirm(`⚠️ ID "${id}" đã tồn tại. Bạn muốn cập nhật chapter vào truyện này?`)) {
+           return; 
+        }
+        // Cập nhật thông tin meta nếu người dùng nhập mới
+        storyToUpdate.title = title || storyToUpdate.title;
+        storyToUpdate.author = author || storyToUpdate.author;
+        storyToUpdate.description = description || storyToUpdate.description;
+      } else {
+        // Tạo mới hoàn toàn
+        isNewStoryMode = true;
+        storyToUpdate = {
+          id: id,
+          title: title || id,
+          author: author || 'Không rõ',
+          description: description || '',
+          thumbnail: '',
+          chapters: []
+        };
+        stories.push(storyToUpdate);      }
     }
 
+    // ===== XỬ LÝ ẢNH BÌA =====
+    let coverUrl = storyToUpdate.thumbnail; 
+    
+    if (isNewStoryMode || coverInput.files[0]) {
+        const coverFile = coverInput.files[0];
+        if(coverFile){
+            log('✨ Upload cover...'); barEl.style.width='18%';
+            const coverB64 = await new Promise((resolve,reject)=>{
+                const fr=new FileReader();
+                fr.onload=()=>resolve(fr.result.split(',')[1]);
+                fr.onerror=()=>reject('FileReader error');
+                fr.readAsDataURL(coverFile);
+            });
+            const ext = (coverFile.name.split('.').pop()||'jpg').split('?')[0];
+            // Lưu ảnh vào thư mục theo ID HIỆN TẠI (đã được cập nhật ở trên nếu đổi ID)
+            const coverPath = `images/${storyToUpdate.id}/chap-0/cover.${ext}`;
+            try{
+                const uploaded = await putFile(coverPath, coverB64, token, `Upload cover ${storyToUpdate.id}`);
+                coverUrl = uploaded || `${RAW_BASE}/${coverPath}`;
+                log('✅ Cover uploaded ->', coverUrl);
+                storyToUpdate.thumbnail = coverUrl;
+            }catch(err){ log('❌ Upload cover lỗi:', err); throw `Upload cover failed: ${JSON.stringify(err)}`; }
+        } else if (isNewStoryMode && !coverUrl) {
+             coverUrl = '';
+        }
+    }
+
+    // ===== XỬ LÝ ẢNH CHAPTER =====
     const files = Array.from(fileInput.files||[]);
     let urlsFromList = (urlListEl.value||'').split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
     if(!files.length && !urlsFromList.length){ if(!confirm('⚠️ Chưa chọn file/URL. Tiếp tục không có ảnh?')) return; }
 
     const imageDownloadUrls = [];
-    const chapterFolder = `images/${id}/chap-${chapNum}`;
+    // Dùng ID HIỆN TẠI của truyện để tạo folder
+    const chapterFolder = `images/${storyToUpdate.id}/chap-${chapNum}`;
 
     if(files.length){
       log(`✨ Upload ${files.length} file(s) to ${chapterFolder}...`);
@@ -1060,14 +1125,13 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
           const fr=new FileReader();
           fr.onload=()=>resolve(fr.result.split(',')[1]);
           fr.onerror=()=>reject('FileReader error');
-          fr.readAsDataURL(f);
-        });
+          fr.readAsDataURL(f);        });
         let ext = (f.name.split('.').pop()||'jpg').split('?')[0];
         ext = ext.replace(/[^a-z0-9]/gi,'').toLowerCase()||'jpg';
         const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
         const path = `${chapterFolder}/${filename}`;
         try{
-          const downloadUrl = await putFile(path, base64, token, `Upload ${id} chap ${chapNum} ${filename}`);
+          const downloadUrl = await putFile(path, base64, token, `Upload ${storyToUpdate.id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
           log('✅ uploaded ->', imageDownloadUrls[i]);
         }catch(err){ log('❌ Upload lỗi:', f.name, err); throw `Upload file failed: ${JSON.stringify(err)}`; }
@@ -1079,9 +1143,10 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
         barEl.style.width = `${18+Math.round((i/Math.max(1,urlsFromList.length))*60)}%`;
         log(`→ URL ${i+1}/${urlsFromList.length}: ${url}`);
         try{
-          const {base64,ext} = await fetchImageAsBase64(url);          const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
+          const {base64,ext} = await fetchImageAsBase64(url);          
+          const filename = `${String(i+1).padStart(3,'0')}.${ext}`;
           const path = `${chapterFolder}/${filename}`;
-          const downloadUrl = await putFile(path, base64, token, `Upload from URL ${id} chap ${chapNum} ${filename}`);
+          const downloadUrl = await putFile(path, base64, token, `Upload from URL ${storyToUpdate.id} chap ${chapNum} ${filename}`);
           imageDownloadUrls.push(downloadUrl || `${RAW_BASE}/${path}`);
           log('✅ uploaded ->', imageDownloadUrls[i]);
         }catch(err){
@@ -1096,39 +1161,54 @@ document.getElementById('btn-upload').addEventListener('click', async ()=>{
     barEl.style.width='82%';
     const newChap = { name:`Chapter ${chapNum}`, images:imageDownloadUrls };
 
-    if(isNew){
-      stories.push({ id, title:title||id, author, description, thumbnail:coverUrl||'', chapters:[newChap] });
-      log('✨ Thêm truyện mới:', id);
-    }else{
-      story = stories.find(s=>s.id===id);
-      story.chapters = story.chapters||[];
-      story.chapters.push(newChap);
-      if(description && description !== story.description) {
-        story.description = description;
-      }
-      if(coverUrl) story.thumbnail=coverUrl;
-      log('✨ Cập nhật truyện, thêm chapter:', id);
+    // Thêm chapter vào truyện
+    storyToUpdate.chapters = storyToUpdate.chapters||[];
+    
+    // Kiểm tra xem chapter này đã tồn tại chưa? Nếu rồi thì ghi đè, chưa thì push
+    const existingChapIndex = storyToUpdate.chapters.findIndex(c => c.name === `Chapter ${chapNum}`);
+    if (existingChapIndex >= 0) {
+        if(confirm(`⚠️ Chapter ${chapNum} đã tồn tại. Bạn muốn ghi đè lên nó?`)) {
+            storyToUpdate.chapters[existingChapIndex] = newChap;
+            log('✨ Ghi đè chapter:', chapNum);
+        } else {
+            log('⚠️ Hủy bỏ vì chapter đã tồn tại.');
+            barEl.style.width='0%';
+            return;
+        }    } else {
+        storyToUpdate.chapters.push(newChap);
+        log('✨ Thêm chapter mới:', chapNum);
     }
+
+    // Sắp xếp lại chapters theo số thứ tự
+    storyToUpdate.chapters.sort((a, b) => {
+        const numA = parseInt(a.name.replace(/\D/g,'')) || 0;
+        const numB = parseInt(b.name.replace(/\D/g,'')) || 0;
+        return numA - numB;
+    });
 
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
 
     log('✨ Ghi stories.json...'); barEl.style.width='90%';
     try{
-      await putFile('stories.json', base64Json, token, `Update stories.json (${id} chap ${chapNum})`);
+      await putFile('stories.json', base64Json, token, `Update stories.json (${storyToUpdate.id} chap ${chapNum})`);
       log('✅ stories.json đã cập nhật.');
     }catch(err){ log('❌ Upload stories.json lỗi:', err); throw `Upload stories.json failed: ${JSON.stringify(err)}`; }
 
     barEl.style.width='100%';
     alert('🎉 Hoàn tất! Reload trang chủ để thấy thay đổi.');
     log('=== ✅ HOÀN TẤT ===');
+    
+    // Reset selection và reload list
+    selectedStory = null; 
     loadStorySelector();
 
   }catch(err){
     barEl.style.width='0%';
     log('❌ LỖI:', err);
     alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));
-  }});
+  }
+});
 
 /* ===== MANAGE TAB FUNCTIONS ===== */
 async function loadManageList(){
@@ -1143,8 +1223,7 @@ async function loadManageList(){
     
     barManage.style.width='60%';
     
-    if(!stories.length){
-      manageList.innerHTML = '<div class="small" style="text-align:center;padding:25px;color:var(--text-muted)">📭 Không có truyện nào.</div>';
+    if(!stories.length){      manageList.innerHTML = '<div class="small" style="text-align:center;padding:25px;color:var(--text-muted)">📭 Không có truyện nào.</div>';
       barManage.style.width='100%';
       return;
     }
@@ -1177,7 +1256,8 @@ async function loadManageList(){
       manageList.appendChild(card);
     }
     
-    barManage.style.width='100%';    logManageMsg(`✅ Đã tải ${stories.length} truyện.`);
+    barManage.style.width='100%';    
+    logManageMsg(`✅ Đã tải ${stories.length} truyện.`);
   }catch(err){
     manageList.innerHTML = `<div class="small" style="text-align:center;padding:25px;color:var(--danger)">❌ Lỗi: ${err.message||JSON.stringify(err)}</div>`;
     logManageMsg('❌ Lỗi tải danh sách:', err);
@@ -1192,8 +1272,7 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
     const token = prompt('🔐 Nhập GitHub token (ghp_...) để xác nhận xóa:');
     if(!token || !token.startsWith('ghp_')){ alert('⚠️ Token không hợp lệ.'); return; }
     
-    logManageMsg(`✨ Bắt đầu xóa chapter "${chapterName}"...`);
-    barManage.style.width='10%';
+    logManageMsg(`✨ Bắt đầu xóa chapter "${chapterName}"...`);    barManage.style.width='10%';
     
     const res = await fetch(RAW_BASE+'/stories.json?t='+Date.now());
     const stories = await res.json();
@@ -1226,7 +1305,8 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
       }
     }
     
-    barManage.style.width='75%';    story.chapters.splice(chapterIndex,1);
+    barManage.style.width='75%';    
+    story.chapters.splice(chapterIndex,1);
     
     const jsonText = JSON.stringify(stories,null,2);
     const base64Json = btoa(unescape(encodeURIComponent(jsonText)));
@@ -1241,8 +1321,7 @@ async function deleteChapter(storyId, chapterIndex, chapterName){
     loadStorySelector();
     
   }catch(err){
-    barManage.style.width='0%';
-    logManageMsg('❌ Lỗi xóa chapter:', err);
+    barManage.style.width='0%';    logManageMsg('❌ Lỗi xóa chapter:', err);
     alert('Lỗi: '+(typeof err==='string'?err:JSON.stringify(err)));
   }
 }
@@ -1291,8 +1370,7 @@ async function confirmDeleteStory(storyId, storyTitle){
     
     for(let i=0;i<pathsToDelete.length;i++){
       const path = pathsToDelete[i];
-      try{
-        const sha = await getShaForPath(path, token);
+      try{        const sha = await getShaForPath(path, token);
         if(sha){
           await deleteFile(path, sha, token, `Delete ${storyId} file ${i+1}`);
           logManageMsg(`   ✓ ${path}`);
@@ -1324,7 +1402,8 @@ async function confirmDeleteStory(storyId, storyTitle){
   }
 }
 
-// Refresh buttonsbtnRefresh.addEventListener('click', ()=>{ loadManageList(); loadStorySelector(); });
+// Refresh buttons
+btnRefresh.addEventListener('click', ()=>{ loadManageList(); loadStorySelector(); });
 
 // Initialize
 renderFilesPreview();
